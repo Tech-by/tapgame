@@ -1,0 +1,3193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Lede Enterprise - Nigerian native wear, Agbada, Senator, Kaftan and custom traditional tailoring."
+  >
+
+  <meta
+    name="theme-color"
+    content="#173f32"
+  >
+
+  <title>Lede Enterprise | Nigerian Native Wear</title>
+
+  <!-- =========================
+       FONTS
+  ========================== -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <style>
+
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #f7f4ed;
+      color: #24231f;
+
+      font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+      line-height: 1.6;
+
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+
+    /* =========================================================
+       VARIABLES
+    ========================================================= */
+
+    :root {
+
+      --green: #245c48;
+      --green-dark: #173f32;
+      --green-soft: #e9f0eb;
+
+      --gold: #ad8642;
+      --cream: #f7f4ed;
+
+      --white: #ffffff;
+      --black: #171816;
+
+      --text: #34342f;
+      --muted: #77756e;
+
+      --border: #e5e1d7;
+
+      --container: 1180px;
+
+      --radius: 18px;
+    }
+
+
+    /* =========================================================
+       GENERAL
+    ========================================================= */
+
+    .container {
+      width: min(92%, var(--container));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .white-section {
+      background: #fff;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      color: var(--green);
+
+      font-size: 10px;
+      font-weight: 800;
+
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+
+      width: 24px;
+      height: 2px;
+
+      background: var(--gold);
+    }
+
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .header {
+      position: fixed;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+
+      z-index: 1000;
+
+      background: rgba(247, 244, 237, .94);
+
+      border-bottom: 1px solid transparent;
+
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+
+      transition:
+        box-shadow .2s ease,
+        border-color .2s ease;
+    }
+
+    .header.scrolled {
+      border-color: var(--border);
+
+      box-shadow:
+        0 8px 30px rgba(0,0,0,.06);
+    }
+
+    .nav {
+      min-height: 76px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 25px;
+    }
+
+
+    /* =========================================================
+       LOGO
+    ========================================================= */
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+
+      flex-shrink: 0;
+    }
+
+    .logo-mark {
+      width: 41px;
+      height: 41px;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--green);
+      color: #fff;
+
+      border-radius: 9px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+
+      line-height: 1;
+    }
+
+    .logo-text strong {
+      color: var(--black);
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .logo-text small {
+      margin-top: 5px;
+
+      color: var(--gold);
+
+      font-size: 8px;
+      font-weight: 800;
+
+      letter-spacing: 1.4px;
+    }
+
+
+    /* =========================================================
+       DESKTOP NAVIGATION
+    ========================================================= */
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+
+      gap: 28px;
+    }
+
+    .desktop-nav a {
+      color: #5f5d56;
+
+      font-size: 12px;
+      font-weight: 600;
+
+      transition: color .2s ease;
+    }
+
+    .desktop-nav a:hover {
+      color: var(--green);
+    }
+
+    .nav-button {
+      padding: 11px 18px;
+
+      background: var(--green);
+      color: white;
+
+      border-radius: 8px;
+
+      font-size: 11px;
+      font-weight: 700;
+
+      transition:
+        background .2s ease,
+        transform .2s ease;
+    }
+
+    .nav-button:hover {
+      background: var(--green-dark);
+
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================================================
+       MOBILE MENU
+    ========================================================= */
+
+    .menu-toggle {
+      width: 42px;
+      height: 42px;
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      flex-direction: column;
+
+      gap: 5px;
+
+      background: #fff;
+
+      border: 1px solid var(--border);
+
+      border-radius: 8px;
+
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 18px;
+      height: 2px;
+
+      background: var(--black);
+
+      transition:
+        transform .2s ease;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      padding-top: 76px;
+
+      min-height: 780px;
+
+      display: flex;
+      align-items: center;
+
+      position: relative;
+
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+
+      width: 500px;
+      height: 500px;
+
+      right: -260px;
+      top: 100px;
+
+      border-radius: 50%;
+
+      background: rgba(36,92,72,.055);
+
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+
+      grid-template-columns:
+        .92fr
+        1.08fr;
+
+      gap: 70px;
+
+      align-items: center;
+
+      padding: 65px 0;
+    }
+
+
+    /* HERO TEXT */
+
+    .hero-content {
+      animation:
+        heroEnter .65s ease both;
+    }
+
+    @keyframes heroEnter {
+
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0);
+      }
+
+    }
+
+    .hero h1 {
+      margin-top: 17px;
+
+      color: var(--black);
+
+      font-family: "Manrope", sans-serif;
+
+      font-size:
+        clamp(
+          47px,
+          6vw,
+          75px
+        );
+
+      line-height: .98;
+
+      letter-spacing: -4px;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+    }
+
+    .hero-description {
+      max-width: 510px;
+
+      margin-top: 23px;
+
+      color: var(--muted);
+
+      font-size: 15px;
+
+      line-height: 1.8;
+    }
+
+
+    /* HERO BUTTONS */
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 11px;
+
+      margin-top: 29px;
+    }
+
+    .btn {
+      min-height: 50px;
+
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 12px;
+
+      padding: 0 20px;
+
+      border-radius: 8px;
+
+      font-size: 11px;
+      font-weight: 700;
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: white;
+
+      box-shadow:
+        0 10px 25px rgba(36,92,72,.15);
+    }
+
+    .btn-primary:hover {
+      background: var(--green-dark);
+    }
+
+    .btn-secondary {
+      background: white;
+
+      border: 1px solid var(--border);
+
+      color: var(--black);
+    }
+
+    .btn-secondary:hover {
+      box-shadow:
+        0 10px 25px rgba(0,0,0,.06);
+    }
+
+
+    /* HERO TRUST */
+
+    .trust-row {
+      display: flex;
+
+      gap: 34px;
+
+      margin-top: 42px;
+
+      padding-top: 22px;
+
+      border-top: 1px solid var(--border);
+    }
+
+    .trust-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .trust-item strong {
+      color: var(--black);
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 19px;
+    }
+
+    .trust-item span {
+      margin-top: 2px;
+
+      color: #888;
+
+      font-size: 8px;
+      font-weight: 700;
+
+      letter-spacing: .7px;
+
+      text-transform: uppercase;
+    }
+
+
+    /* =========================================================
+       HERO IMAGE
+    ========================================================= */
+
+    .hero-photo {
+      position: relative;
+
+      overflow: hidden;
+
+      max-width: 590px;
+
+      margin-left: auto;
+
+      border-radius: 20px;
+
+      box-shadow:
+        0 25px 55px rgba(0,0,0,.13);
+
+      animation:
+        photoEnter .7s .05s ease both;
+    }
+
+    @keyframes photoEnter {
+
+      from {
+        opacity: 0;
+
+        transform:
+          translateX(20px);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateX(0);
+      }
+
+    }
+
+    .hero-photo img {
+      height: 620px;
+
+      object-fit: cover;
+
+      object-position: center;
+    }
+
+    .hero-photo::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        linear-gradient(
+          to top,
+          rgba(0,0,0,.27),
+          transparent 45%
+        );
+
+      pointer-events: none;
+    }
+
+    .photo-caption {
+      position: absolute;
+
+      left: 20px;
+      bottom: 20px;
+
+      z-index: 2;
+
+      display: flex;
+      align-items: center;
+
+      gap: 11px;
+
+      padding: 12px 15px;
+
+      background: rgba(255,255,255,.95);
+
+      border-radius: 9px;
+
+      box-shadow:
+        0 10px 30px rgba(0,0,0,.14);
+    }
+
+    .caption-icon {
+      width: 31px;
+      height: 31px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 50%;
+
+      background: var(--green-soft);
+      color: var(--green);
+
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .photo-caption strong {
+      display: block;
+
+      color: var(--black);
+
+      font-size: 10px;
+    }
+
+    .photo-caption span {
+      display: block;
+
+      margin-top: 2px;
+
+      color: #888;
+
+      font-size: 8px;
+    }
+
+
+    /* =========================================================
+       SECTION HEADINGS
+    ========================================================= */
+
+    .section-heading {
+      display: flex;
+
+      align-items: end;
+      justify-content: space-between;
+
+      gap: 40px;
+
+      margin-bottom: 50px;
+    }
+
+    .heading h2 {
+      margin-top: 10px;
+
+      color: var(--black);
+
+      font-family: "Manrope", sans-serif;
+
+      font-size:
+        clamp(
+          36px,
+          4.5vw,
+          55px
+        );
+
+      line-height: 1.02;
+
+      letter-spacing: -2.5px;
+    }
+
+    .heading h2 span {
+      color: var(--green);
+    }
+
+    .section-heading > p {
+      max-width: 420px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.75;
+    }
+
+
+    /* =========================================================
+       SERVICES
+    ========================================================= */
+
+    .services {
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          4,
+          1fr
+        );
+
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+
+      border-radius: var(--radius);
+    }
+
+    .service {
+      min-height: 315px;
+
+      position: relative;
+
+      padding: 28px;
+
+      background: white;
+
+      border-right: 1px solid var(--border);
+
+      transition:
+        background .2s ease;
+    }
+
+    .service:last-child {
+      border-right: 0;
+    }
+
+    .service:hover {
+      background: #faf9f5;
+    }
+
+    .service.highlight {
+      background: #eff5f1;
+    }
+
+    .service-number {
+      color: #aaa;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+
+      display: grid;
+      place-items: center;
+
+      margin-top: 28px;
+
+      background: var(--green);
+      color: white;
+
+      border-radius: 10px;
+
+      font-size: 17px;
+    }
+
+    .service h3 {
+      margin-top: 20px;
+
+      color: var(--black);
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 16px;
+    }
+
+    .service p {
+      margin-top: 9px;
+
+      color: #777;
+
+      font-size: 11px;
+
+      line-height: 1.7;
+    }
+
+    .service a {
+      position: absolute;
+
+      left: 28px;
+      bottom: 25px;
+
+      color: var(--green);
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+
+    /* =========================================================
+       NATIVE WEAR GALLERY
+    ========================================================= */
+
+    .gallery-section {
+      background: var(--cream);
+    }
+
+    .gallery {
+      display: grid;
+
+      grid-template-columns:
+        1.25fr
+        .75fr
+        .75fr;
+
+      grid-template-rows:
+        280px
+        280px;
+
+      gap: 13px;
+    }
+
+    .gallery-card {
+      position: relative;
+
+      overflow: hidden;
+
+      border-radius: 14px;
+
+      background: #ddd;
+    }
+
+    .gallery-card.large {
+      grid-row: span 2;
+    }
+
+    .gallery-card img {
+      height: 100%;
+
+      object-fit: cover;
+
+      transition:
+        transform .45s ease;
+    }
+
+    .gallery-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .gallery-label {
+      position: absolute;
+
+      left: 14px;
+      bottom: 14px;
+
+      padding: 8px 11px;
+
+      background:
+        rgba(0,0,0,.72);
+
+      color: white;
+
+      border-radius: 6px;
+
+      font-size: 9px;
+      font-weight: 700;
+
+      backdrop-filter: blur(5px);
+    }
+
+
+    /* =========================================================
+       ABOUT / CRAFT
+    ========================================================= */
+
+    .craft-grid {
+      display: grid;
+
+      grid-template-columns:
+        .9fr
+        1.1fr;
+
+      gap: 75px;
+
+      align-items: center;
+    }
+
+    .craft-image {
+      overflow: hidden;
+
+      border-radius: 18px;
+    }
+
+    .craft-image img {
+      height: 510px;
+
+      object-fit: cover;
+    }
+
+    .craft-copy h2 {
+      margin-top: 10px;
+
+      color: var(--black);
+
+      font-family: "Manrope", sans-serif;
+
+      font-size:
+        clamp(
+          36px,
+          4vw,
+          52px
+        );
+
+      line-height: 1.04;
+
+      letter-spacing: -2px;
+    }
+
+    .craft-copy h2 span {
+      color: var(--green);
+    }
+
+    .craft-copy > p {
+      margin-top: 18px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.8;
+    }
+
+    .craft-points {
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr;
+
+      gap: 13px;
+
+      margin-top: 28px;
+    }
+
+    .craft-point {
+      padding: 17px;
+
+      background: #faf9f5;
+
+      border: 1px solid var(--border);
+
+      border-radius: 10px;
+    }
+
+    .craft-point strong {
+      display: block;
+
+      color: var(--black);
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 11px;
+    }
+
+    .craft-point span {
+      display: block;
+
+      margin-top: 5px;
+
+      color: #888;
+
+      font-size: 9px;
+    }
+
+
+    /* =========================================================
+       HOW IT WORKS
+    ========================================================= */
+
+    .process-section {
+      background: white;
+    }
+
+    .center-heading {
+      max-width: 650px;
+
+      margin: 0 auto 60px;
+
+      text-align: center;
+    }
+
+    .center-heading .eyebrow {
+      justify-content: center;
+    }
+
+    .center-heading h2 {
+      margin-top: 10px;
+
+      color: var(--black);
+
+      font-family: "Manrope", sans-serif;
+
+      font-size:
+        clamp(
+          36px,
+          4.5vw,
+          55px
+        );
+
+      line-height: 1;
+
+      letter-spacing: -2.5px;
+    }
+
+    .center-heading h2 span {
+      color: var(--green);
+    }
+
+    .center-heading p {
+      margin-top: 14px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+    .process {
+      display: flex;
+
+      align-items: flex-start;
+
+      justify-content: center;
+    }
+
+    .process-step {
+      width: 205px;
+
+      text-align: center;
+    }
+
+    .process-number {
+      width: 58px;
+      height: 58px;
+
+      display: grid;
+      place-items: center;
+
+      margin: 0 auto 20px;
+
+      background: var(--green);
+      color: white;
+
+      border-radius: 50%;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .process-step h3 {
+      color: var(--black);
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 14px;
+    }
+
+    .process-step p {
+      margin-top: 7px;
+
+      color: #888;
+
+      font-size: 10px;
+    }
+
+    .process-line {
+      width: 70px;
+
+      margin-top: 29px;
+
+      border-top: 1px dashed #ccc;
+    }
+
+
+    /* =========================================================
+       TESTIMONIAL
+    ========================================================= */
+
+    .testimonial {
+      background: var(--cream);
+    }
+
+    .testimonial-box {
+      padding: 65px 8%;
+
+      background: var(--green);
+
+      border-radius: 20px;
+
+      color: white;
+
+      text-align: center;
+    }
+
+    .quote {
+      color: #b8d5ca;
+
+      font-family: Georgia, serif;
+
+      font-size: 65px;
+
+      line-height: .5;
+    }
+
+    blockquote {
+      max-width: 800px;
+
+      margin: 25px auto 30px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size:
+        clamp(
+          20px,
+          3vw,
+          31px
+        );
+
+      line-height: 1.35;
+
+      letter-spacing: -1px;
+    }
+
+    .testimonial-author {
+      color: #c7ddd5;
+
+      font-size: 9px;
+      font-weight: 700;
+
+      letter-spacing: 1px;
+
+      text-transform: uppercase;
+    }
+
+
+    /* =========================================================
+       CONTACT
+    ========================================================= */
+
+    .contact-section {
+      background: white;
+    }
+
+    .contact-box {
+      display: grid;
+
+      grid-template-columns:
+        1.15fr
+        .85fr;
+
+      overflow: hidden;
+
+      background: var(--black);
+
+      color: white;
+
+      border-radius: 20px;
+    }
+
+    .contact-main {
+      padding: 65px;
+    }
+
+    .contact-main .eyebrow {
+      color: #a9cdbf;
+    }
+
+    .contact-main h2 {
+      margin-top: 11px;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size:
+        clamp(
+          36px,
+          4vw,
+          52px
+        );
+
+      line-height: 1.03;
+
+      letter-spacing: -2px;
+    }
+
+    .contact-main p {
+      max-width: 500px;
+
+      margin-top: 18px;
+
+      color: #aaa;
+
+      font-size: 13px;
+    }
+
+    .contact-main .btn {
+      margin-top: 28px;
+    }
+
+    .contact-info {
+      padding: 50px;
+
+      display: flex;
+      flex-direction: column;
+
+      justify-content: center;
+
+      gap: 26px;
+
+      background: var(--green-dark);
+    }
+
+    .contact-item {
+      padding-bottom: 20px;
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.13);
+    }
+
+    .contact-item:last-child {
+      padding-bottom: 0;
+
+      border-bottom: 0;
+    }
+
+    .contact-item small {
+      display: block;
+
+      margin-bottom: 5px;
+
+      color: #8fb8a9;
+
+      font-size: 8px;
+      font-weight: 800;
+
+      letter-spacing: 1.5px;
+    }
+
+    .contact-item strong {
+      display: block;
+
+      color: white;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 13px;
+    }
+
+    .contact-item span {
+      display: block;
+
+      margin-top: 3px;
+
+      color: #aac4ba;
+
+      font-size: 9px;
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    footer {
+      background: #111;
+
+      color: white;
+    }
+
+    .footer-main {
+      padding: 50px 0;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 30px;
+    }
+
+    .footer-logo .logo-text strong {
+      color: white;
+    }
+
+    .footer-description {
+      max-width: 340px;
+
+      margin-top: 13px;
+
+      color: #777;
+
+      font-size: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 22px;
+    }
+
+    .footer-links a {
+      color: #999;
+
+      font-size: 10px;
+
+      transition: color .2s ease;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      padding: 18px 0;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      border-top: 1px solid #292929;
+
+      color: #666;
+
+      font-size: 8px;
+    }
+
+
+    /* =========================================================
+       WHATSAPP
+    ========================================================= */
+
+    .whatsapp {
+      position: fixed;
+
+      right: 20px;
+      bottom: 20px;
+
+      z-index: 900;
+
+      width: 54px;
+      height: 54px;
+
+      display: grid;
+      place-items: center;
+
+      background: #25d366;
+      color: white;
+
+      border-radius: 50%;
+
+      box-shadow:
+        0 10px 28px rgba(0,0,0,.18);
+
+      font-size: 21px;
+
+      transition:
+        transform .2s ease;
+    }
+
+    .whatsapp:hover {
+      transform: translateY(-3px);
+    }
+
+
+    /* =========================================================
+       TABLET
+    ========================================================= */
+
+    @media (max-width: 1000px) {
+
+      .desktop-nav {
+        gap: 16px;
+      }
+
+      .nav-button {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns:
+          1fr
+          .9fr;
+
+        gap: 35px;
+      }
+
+      .hero h1 {
+        font-size: 55px;
+      }
+
+      .services {
+        grid-template-columns:
+          1fr
+          1fr;
+      }
+
+      .service:nth-child(2) {
+        border-right: 0;
+      }
+
+      .service:nth-child(3),
+      .service:nth-child(4) {
+        border-top: 1px solid var(--border);
+      }
+
+      .service:nth-child(4) {
+        border-right: 0;
+      }
+
+      .gallery {
+        grid-template-columns:
+          1fr
+          1fr;
+
+        grid-template-rows:
+          300px
+          220px
+          220px;
+      }
+
+      .gallery-card.large {
+        grid-column: span 2;
+
+        grid-row: auto;
+      }
+
+      .craft-grid {
+        gap: 40px;
+      }
+
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-info {
+        display: grid;
+
+        grid-template-columns:
+          repeat(3,1fr);
+      }
+
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 700px) {
+
+      .container {
+        width: min(91%, 560px);
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+
+
+      /* NAV */
+
+      .nav {
+        min-height: 70px;
+      }
+
+      .desktop-nav {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .mobile-menu {
+        display: flex;
+
+        flex-direction: column;
+
+        max-height: 0;
+
+        overflow: hidden;
+
+        padding:
+          0 4.5%;
+
+        background:
+          rgba(255,255,255,.98);
+
+        transition:
+          max-height .25s ease,
+          padding .25s ease;
+      }
+
+      .mobile-menu.active {
+        max-height: 400px;
+
+        padding-top: 8px;
+        padding-bottom: 18px;
+
+        border-bottom:
+          1px solid var(--border);
+      }
+
+      .mobile-menu a {
+        padding: 12px 0;
+
+        color: #444;
+
+        border-bottom:
+          1px solid #eee;
+
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .mobile-menu .mobile-order {
+        margin-top: 10px;
+
+        padding: 13px;
+
+        background: var(--green);
+        color: white;
+
+        border: 0;
+
+        border-radius: 8px;
+
+        text-align: center;
+      }
+
+
+      /* HERO */
+
+      .hero {
+        min-height: auto;
+
+        padding-top: 70px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+
+        gap: 42px;
+
+        padding: 55px 0 65px;
+      }
+
+      .hero h1 {
+        font-size:
+          clamp(
+            46px,
+            14vw,
+            63px
+          );
+
+        letter-spacing: -3px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .trust-row {
+        gap: 10px;
+
+        justify-content:
+          space-between;
+      }
+
+      .trust-item strong {
+        font-size: 16px;
+      }
+
+      .trust-item span {
+        font-size: 7px;
+      }
+
+      .hero-photo {
+        max-width: none;
+
+        border-radius: 16px;
+      }
+
+      .hero-photo img {
+        height: 480px;
+      }
+
+      .photo-caption {
+        left: 13px;
+        bottom: 13px;
+      }
+
+
+      /* SECTION HEADINGS */
+
+      .section-heading {
+        display: block;
+
+        margin-bottom: 35px;
+      }
+
+      .section-heading > p {
+        margin-top: 18px;
+      }
+
+      .heading h2,
+      .center-heading h2,
+      .craft-copy h2,
+      .contact-main h2 {
+        font-size: 37px;
+
+        letter-spacing: -1.8px;
+      }
+
+
+      /* SERVICES */
+
+      .services {
+        grid-template-columns: 1fr;
+      }
+
+      .service {
+        min-height: 280px;
+
+        border-right: 0 !important;
+
+        border-bottom:
+          1px solid var(--border);
+      }
+
+      .service:last-child {
+        border-bottom: 0;
+      }
+
+
+      /* GALLERY */
+
+      .gallery {
+        grid-template-columns:
+          1fr
+          1fr;
+
+        grid-template-rows:
+          290px
+          180px;
+      }
+
+      .gallery-card.large {
+        grid-column: span 2;
+      }
+
+
+      /* CRAFT */
+
+      .craft-grid {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+      }
+
+      .craft-image img {
+        height: 430px;
+      }
+
+      .craft-points {
+        grid-template-columns:
+          1fr
+          1fr;
+      }
+
+
+      /* PROCESS */
+
+      .center-heading {
+        margin-bottom: 45px;
+      }
+
+      .process {
+        display: grid;
+
+        grid-template-columns:
+          1fr
+          1fr;
+
+        gap: 40px 12px;
+      }
+
+      .process-step {
+        width: auto;
+      }
+
+      .process-line {
+        display: none;
+      }
+
+
+      /* TESTIMONIAL */
+
+      .testimonial-box {
+        padding: 50px 20px;
+
+        border-radius: 16px;
+      }
+
+      blockquote {
+        font-size: 20px;
+      }
+
+
+      /* CONTACT */
+
+      .contact-main {
+        padding: 45px 25px;
+      }
+
+      .contact-info {
+        display: flex;
+
+        padding: 40px 25px;
+      }
+
+
+      /* FOOTER */
+
+      .footer-main {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding: 43px 0;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+
+        gap: 7px;
+      }
+
+      .whatsapp {
+        right: 15px;
+        bottom: 15px;
+
+        width: 52px;
+        height: 52px;
+      }
+
+    }
+
+
+    /* =========================================================
+       VERY SMALL PHONES
+    ========================================================= */
+
+    @media (max-width: 380px) {
+
+      .hero h1 {
+        font-size: 44px;
+      }
+
+      .trust-row {
+        gap: 5px;
+      }
+
+      .trust-item strong {
+        font-size: 14px;
+      }
+
+      .gallery {
+        grid-template-rows:
+          250px
+          155px;
+      }
+
+      .craft-points {
+        grid-template-columns: 1fr;
+      }
+
+      .process {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration:
+          .01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          .01ms !important;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =======================================================
+       HEADER
+  ======================================================== -->
+
+  <header
+    class="header"
+    id="header"
+  >
+
+    <div class="container nav">
+
+
+      <a
+        href="#home"
+        class="logo"
+        aria-label="Lede Enterprise"
+      >
+
+        <span class="logo-mark">
+          LE
+        </span>
+
+        <span class="logo-text">
+
+          <strong>
+            Lede Enterprise
+          </strong>
+
+          <small>
+            NATIVE WEAR
+          </small>
+
+        </span>
+
+      </a>
+
+
+      <nav class="desktop-nav">
+
+        <a href="#home">
+          Home
+        </a>
+
+        <a href="#services">
+          Services
+        </a>
+
+        <a href="#styles">
+          Styles
+        </a>
+
+        <a href="#craft">
+          Our Craft
+        </a>
+
+        <a href="#process">
+          Process
+        </a>
+
+        <a href="#contact">
+          Contact
+        </a>
+
+      </nav>
+
+
+      <!-- CHANGE NUMBER -->
+
+      <a
+        class="nav-button"
+        href="https://wa.me/2348000000000?text=Hello%20Lede%20Enterprise%2C%20I%20want%20to%20make%20an%20order."
+        target="_blank"
+      >
+        Order on WhatsApp
+      </a>
+
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </button>
+
+    </div>
+
+
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
+    >
+
+      <a href="#home">
+        Home
+      </a>
+
+      <a href="#services">
+        Services
+      </a>
+
+      <a href="#styles">
+        Styles
+      </a>
+
+      <a href="#craft">
+        Our Craft
+      </a>
+
+      <a href="#process">
+        Process
+      </a>
+
+      <a href="#contact">
+        Contact
+      </a>
+
+      <a
+        href="https://wa.me/2348000000000"
+        target="_blank"
+        class="mobile-order"
+      >
+        Chat on WhatsApp
+      </a>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =======================================================
+       HERO
+  ======================================================== -->
+
+  <main>
+
+    <section
+      class="hero"
+      id="home"
+    >
+
+      <div class="container hero-grid">
+
+
+        <div class="hero-content">
+
+          <span class="eyebrow">
+            Nigerian Native Tailoring
+          </span>
+
+
+          <h1>
+
+            Native wear
+
+            <br>
+
+            <span>
+              made right.
+            </span>
+
+          </h1>
+
+
+          <p class="hero-description">
+
+            Lede Enterprise creates Nigerian native
+            outfits with proper measurements, clean
+            finishing and designs that respect our
+            traditional style.
+
+          </p>
+
+
+          <div class="hero-buttons">
+
+            <a
+              href="https://wa.me/2348000000000?text=Hello%20Lede%20Enterprise%2C%20I%20want%20to%20make%20a%20native%20wear%20order."
+              target="_blank"
+              class="btn btn-primary"
+            >
+
+              Start Your Order
+
+              <span>
+                →
+              </span>
+
+            </a>
+
+
+            <a
+              href="#styles"
+              class="btn btn-secondary"
+            >
+
+              See Native Styles
+
+            </a>
+
+          </div>
+
+
+          <div class="trust-row">
+
+
+            <div class="trust-item">
+
+              <strong>
+                Agbada
+              </strong>
+
+              <span>
+                Traditional
+              </span>
+
+            </div>
+
+
+            <div class="trust-item">
+
+              <strong>
+                Senator
+              </strong>
+
+              <span>
+                Native Wear
+              </span>
+
+            </div>
+
+
+            <div class="trust-item">
+
+              <strong>
+                Custom
+              </strong>
+
+              <span>
+                Your Design
+              </span>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+
+        <!-- NIGERIAN AG BADA IMAGE -->
+
+        <div class="hero-photo">
+
+          <img
+            src="https://images.pexels.com/photos/36690235/pexels-photo-36690235.jpeg?cs=srgb&dl=pexels-venvick-36690235.jpg&fm=jpg"
+            alt="Nigerian man wearing traditional Yoruba Agbada"
+            fetchpriority="high"
+          >
+
+
+          <div class="photo-caption">
+
+            <div class="caption-icon">
+              ✓
+            </div>
+
+            <div>
+
+              <strong>
+                Nigerian Traditional Wear
+              </strong>
+
+              <span>
+                Agbada • Aso-Oke • Native Styles
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SERVICES
+    ====================================================== -->
+
+    <section
+      class="section white-section"
+      id="services"
+    >
+
+      <div class="container">
+
+
+        <div class="section-heading">
+
+          <div class="heading">
+
+            <span class="eyebrow">
+              WHAT WE MAKE
+            </span>
+
+            <h2>
+
+              Nigerian styles.
+
+              <br>
+
+              <span>
+                Properly tailored.
+              </span>
+
+            </h2>
+
+          </div>
+
+
+          <p>
+
+            Whether you're attending a wedding,
+            naming ceremony, Jumat, celebration or
+            simply want a good native outfit, Lede
+            Enterprise makes it around you.
+
+          </p>
+
+        </div>
+
+
+
+        <div class="services">
+
+
+          <article class="service">
+
+            <span class="service-number">
+              01
+            </span>
+
+            <div class="service-icon">
+              ✂
+            </div>
+
+            <h3>
+              Agbada
+            </h3>
+
+            <p>
+
+              Traditional Nigerian Agbada with
+              carefully finished embroidery,
+              matching inner wear and trousers.
+
+            </p>
+
+            <a href="#contact">
+              Order Agbada →
+            </a>
+
+          </article>
+
+
+
+          <article class="service highlight">
+
+            <span class="service-number">
+              02
+            </span>
+
+            <div class="service-icon">
+              ◆
+            </div>
+
+            <h3>
+              Senator Wear
+            </h3>
+
+            <p>
+
+              Clean Nigerian Senator-style outfits
+              for occasions, work, Friday dressing
+              and everyday native wear.
+
+            </p>
+
+            <a href="#contact">
+              Order Senator →
+            </a>
+
+          </article>
+
+
+
+          <article class="service">
+
+            <span class="service-number">
+              03
+            </span>
+
+            <div class="service-icon">
+              ◈
+            </div>
+
+            <h3>
+              Kaftan & Native
+            </h3>
+
+            <p>
+
+              Comfortable native tops and matching
+              trousers with traditional details and
+              modern fitting.
+
+            </p>
+
+            <a href="#contact">
+              Enquire →
+            </a>
+
+          </article>
+
+
+
+          <article class="service">
+
+            <span class="service-number">
+              04
+            </span>
+
+            <div class="service-icon">
+              +
+            </div>
+
+            <h3>
+              Custom Design
+            </h3>
+
+            <p>
+
+              Bring your own picture, fabric or idea.
+              We can discuss the design and create
+              it around your measurements.
+
+            </p>
+
+            <a href="#contact">
+              Send Your Design →
+            </a>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         STYLES
+    ====================================================== -->
+
+    <section
+      class="section gallery-section"
+      id="styles"
+    >
+
+      <div class="container">
+
+
+        <div class="section-heading">
+
+          <div class="heading">
+
+            <span class="eyebrow">
+              NATIVE COLLECTION
+            </span>
+
+            <h2>
+
+              From Agbada
+
+              <br>
+
+              to <span>Aso-Oke.</span>
+
+            </h2>
+
+          </div>
+
+
+          <p>
+
+            Nigerian traditional clothing comes in
+            different fabrics, cuts and regional styles.
+            These are the kinds of native looks we
+            want the Lede Enterprise brand to represent.
+
+          </p>
+
+        </div>
+
+
+
+        <div class="gallery">
+
+
+          <!-- YORUBA AG BADA -->
+
+          <div class="gallery-card large">
+
+            <img
+              src="https://images.pexels.com/photos/35013626/pexels-photo-35013626.jpeg?cs=srgb&dl=pexels-abdulkadir-muhammad-sani-2150944758-35013626.jpg&fm=jpg"
+              alt="Nigerian Agbada with Aso-Oke cap"
+              loading="lazy"
+            >
+
+            <span class="gallery-label">
+              Agbada & Aso-Oke
+            </span>
+
+          </div>
+
+
+          <!-- BLUE NATIVE -->
+
+          <div class="gallery-card">
+
+            <img
+              src="https://images.pexels.com/photos/37320665/pexels-photo-37320665.jpeg?cs=srgb&dl=pexels-taiyesalawu-37320665.jpg&fm=jpg"
+              alt="Nigerian traditional blue native outfit"
+              loading="lazy"
+            >
+
+            <span class="gallery-label">
+              Yoruba Native Wear
+            </span>
+
+          </div>
+
+
+          <!-- WHITE AG BADA -->
+
+          <div class="gallery-card">
+
+            <img
+              src="https://images.pexels.com/photos/36445251/pexels-photo-36445251.jpeg?cs=srgb&dl=pexels-abubakar-mamman-2148132108-36445251.jpg&fm=jpg"
+              alt="White Nigerian Agbada outfit"
+              loading="lazy"
+            >
+
+            <span class="gallery-label">
+              White Agbada
+            </span>
+
+          </div>
+
+
+          <!-- TRADITIONAL GREEN -->
+
+          <div class="gallery-card">
+
+            <img
+              src="https://images.pexels.com/photos/36690235/pexels-photo-36690235.jpeg?cs=srgb&dl=pexels-venvick-36690235.jpg&fm=jpg"
+              alt="Green Yoruba traditional attire"
+              loading="lazy"
+            >
+
+            <span class="gallery-label">
+              Traditional Yoruba
+            </span>
+
+          </div>
+
+
+          <!-- BLUE PINK -->
+
+          <div class="gallery-card">
+
+            <img
+              src="https://images.pexels.com/photos/37320670/pexels-photo-37320670.jpeg?cs=srgb&dl=pexels-taiyesalawu-37320670.jpg&fm=jpg"
+              alt="Nigerian native clothing"
+              loading="lazy"
+            >
+
+            <span class="gallery-label">
+              Native Celebration Wear
+            </span>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CRAFT
+    ====================================================== -->
+
+    <section
+      class="section white-section"
+      id="craft"
+    >
+
+      <div class="container craft-grid">
+
+
+        <div class="craft-image">
+
+          <img
+            src="https://images.pexels.com/photos/11645428/pexels-photo-11645428.jpeg?cs=srgb&dl=pexels-ishaka-ali-204762876-11645428.jpg&fm=jpg"
+            alt="Nigerian tailor working on traditional clothing"
+            loading="lazy"
+          >
+
+        </div>
+
+
+
+        <div class="craft-copy">
+
+          <span class="eyebrow">
+            THE CRAFT
+          </span>
+
+
+          <h2>
+
+            Good native wear
+
+            <br>
+
+            starts with <span>good fitting.</span>
+
+          </h2>
+
+
+          <p>
+
+            Before an outfit becomes beautiful, it
+            needs to fit the person wearing it.
+            Lede Enterprise focuses on measurements,
+            fabric placement, stitching and finishing.
+
+          </p>
+
+
+          <div class="craft-points">
+
+
+            <div class="craft-point">
+
+              <strong>
+                Accurate Measurement
+              </strong>
+
+              <span>
+                Your outfit starts with your actual
+                measurements.
+              </span>
+
+            </div>
+
+
+            <div class="craft-point">
+
+              <strong>
+                Clean Stitching
+              </strong>
+
+              <span>
+                Attention to seams, edges and details.
+              </span>
+
+            </div>
+
+
+            <div class="craft-point">
+
+              <strong>
+                Traditional Details
+              </strong>
+
+              <span>
+                Nigerian patterns, caps and embroidery.
+              </span>
+
+            </div>
+
+
+            <div class="craft-point">
+
+              <strong>
+                Final Fitting
+              </strong>
+
+              <span>
+                Adjustments before the final delivery.
+              </span>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PROCESS
+    ====================================================== -->
+
+    <section
+      class="section process-section"
+      id="process"
+    >
+
+      <div class="container">
+
+
+        <div class="center-heading">
+
+          <span class="eyebrow">
+            HOW IT WORKS
+          </span>
+
+
+          <h2>
+
+            Your idea.
+
+            <br>
+
+            Your measurements.
+
+            <br>
+
+            <span>
+              Your outfit.
+            </span>
+
+          </h2>
+
+
+          <p>
+
+            Simple process. No unnecessary stress.
+
+          </p>
+
+        </div>
+
+
+
+        <div class="process">
+
+
+          <div class="process-step">
+
+            <div class="process-number">
+              01
+            </div>
+
+            <h3>
+              Choose Your Style
+            </h3>
+
+            <p>
+              Show us the Agbada, Senator or native
+              design you want.
+            </p>
+
+          </div>
+
+
+          <div class="process-line"></div>
+
+
+          <div class="process-step">
+
+            <div class="process-number">
+              02
+            </div>
+
+            <h3>
+              Measurements
+            </h3>
+
+            <p>
+              We take the measurements needed for
+              your particular outfit.
+            </p>
+
+          </div>
+
+
+          <div class="process-line"></div>
+
+
+          <div class="process-step">
+
+            <div class="process-number">
+              03
+            </div>
+
+            <h3>
+              Sewing
+            </h3>
+
+            <p>
+              Your fabric is cut, stitched and
+              carefully finished.
+            </p>
+
+          </div>
+
+
+          <div class="process-line"></div>
+
+
+          <div class="process-step">
+
+            <div class="process-number">
+              04
+            </div>
+
+            <h3>
+              Fitting & Pickup
+            </h3>
+
+            <p>
+              Check the outfit, make adjustments and
+              collect your finished native wear.
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         TESTIMONIAL
+    ====================================================== -->
+
+    <section class="section testimonial">
+
+      <div class="container">
+
+        <div class="testimonial-box">
+
+          <div class="quote">
+            “
+          </div>
+
+
+          <blockquote>
+
+            A good native outfit should represent
+            where you come from and still make you
+            feel confident wherever you go.
+
+          </blockquote>
+
+
+          <div class="testimonial-author">
+
+            Lede Enterprise • Nigerian Native Tailoring
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CONTACT
+    ====================================================== -->
+
+    <section
+      class="section contact-section"
+      id="contact"
+    >
+
+      <div class="container">
+
+
+        <div class="contact-box">
+
+
+          <div class="contact-main">
+
+            <span class="eyebrow">
+              READY TO ORDER?
+            </span>
+
+
+            <h2>
+
+              Send us the
+
+              <br>
+
+              style you want.
+
+            </h2>
+
+
+            <p>
+
+              Take a screenshot or picture of the
+              Nigerian native style you like and send
+              it to Lede Enterprise on WhatsApp.
+
+            </p>
+
+
+            <a
+              href="https://wa.me/2348000000000?text=Hello%20Lede%20Enterprise%2C%20I%20have%20a%20native%20wear%20design%20I%20want%20to%20make."
+              target="_blank"
+              class="btn btn-primary"
+            >
+
+              Chat With Us
+
+              <span>
+                →
+              </span>
+
+            </a>
+
+          </div>
+
+
+
+          <div class="contact-info">
+
+
+            <div class="contact-item">
+
+              <small>
+                LOCATION
+              </small>
+
+              <strong>
+                Your Tailoring Shop
+              </strong>
+
+              <span>
+                Add the client's exact address here
+              </span>
+
+            </div>
+
+
+            <div class="contact-item">
+
+              <small>
+                WHATSAPP
+              </small>
+
+              <strong>
+                +234 800 000 0000
+              </strong>
+
+              <span>
+                Replace with client's number
+              </span>
+
+            </div>
+
+
+            <div class="contact-item">
+
+              <small>
+                OPENING HOURS
+              </small>
+
+              <strong>
+                Monday – Saturday
+              </strong>
+
+              <span>
+                8:00 AM – 7:00 PM
+              </span>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =======================================================
+       FOOTER
+  ======================================================== -->
+
+  <footer>
+
+    <div class="container footer-main">
+
+
+      <div class="footer-logo">
+
+        <a
+          href="#home"
+          class="logo"
+        >
+
+          <span class="logo-mark">
+            LE
+          </span>
+
+          <span class="logo-text">
+
+            <strong>
+              Lede Enterprise
+            </strong>
+
+            <small>
+              NATIVE WEAR
+            </small>
+
+          </span>
+
+        </a>
+
+
+        <p class="footer-description">
+
+          Nigerian native wear made with proper
+          measurements, traditional details and
+          clean finishing.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="footer-links">
+
+        <a href="#home">
+          Home
+        </a>
+
+        <a href="#services">
+          Services
+        </a>
+
+        <a href="#styles">
+          Styles
+        </a>
+
+        <a href="#craft">
+          Craft
+        </a>
+
+        <a href="#contact">
+          Contact
+        </a>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="container footer-bottom">
+
+      <span>
+        © <span id="year"></span> Lede Enterprise.
+      </span>
+
+      <span>
+        Nigerian Native Wear & Tailoring
+      </span>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- =======================================================
+       FLOATING WHATSAPP
+  ======================================================== -->
+
+  <a
+    href="https://wa.me/2348000000000?text=Hello%20Lede%20Enterprise%2C%20I%20found%20your%20website."
+    target="_blank"
+    class="whatsapp"
+    aria-label="Contact Lede Enterprise on WhatsApp"
+  >
+
+    ☎
+
+  </a>
+
+
+
+  <!-- =======================================================
+       JAVASCRIPT
+  ======================================================== -->
+
+  <script>
+
+    "use strict";
+
+
+    /* =====================================================
+       ELEMENTS
+    ====================================================== */
+
+    const header =
+      document.getElementById("header");
+
+    const menuToggle =
+      document.getElementById("menuToggle");
+
+    const mobileMenu =
+      document.getElementById("mobileMenu");
+
+    const year =
+      document.getElementById("year");
+
+
+    /* =====================================================
+       CURRENT YEAR
+    ====================================================== */
+
+    year.textContent =
+      new Date().getFullYear();
+
+
+    /* =====================================================
+       HEADER SCROLL
+       Lightweight
+    ====================================================== */
+
+    let ticking = false;
+
+    function updateHeader() {
+
+      if (window.scrollY > 15) {
+
+        header.classList.add("scrolled");
+
+      } else {
+
+        header.classList.remove("scrolled");
+
+      }
+
+      ticking = false;
+    }
+
+
+    window.addEventListener(
+      "scroll",
+
+      () => {
+
+        if (!ticking) {
+
+          window.requestAnimationFrame(
+            updateHeader
+          );
+
+          ticking = true;
+
+        }
+
+      },
+
+      {
+        passive: true
+      }
+
+    );
+
+
+    /* =====================================================
+       MOBILE MENU
+    ====================================================== */
+
+    menuToggle.addEventListener(
+      "click",
+
+      () => {
+
+        const isOpen =
+          mobileMenu.classList.toggle("active");
+
+        menuToggle.setAttribute(
+          "aria-expanded",
+          String(isOpen)
+        );
+
+      }
+
+    );
+
+
+    /* =====================================================
+       CLOSE MOBILE MENU AFTER LINK
+    ====================================================== */
+
+    document
+      .querySelectorAll(
+        ".mobile-menu a"
+      )
+      .forEach(
+
+        link => {
+
+          link.addEventListener(
+            "click",
+
+            () => {
+
+              mobileMenu.classList.remove(
+                "active"
+              );
+
+              menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+              );
+
+            }
+
+          );
+
+        }
+
+      );
+
+
+    /* =====================================================
+       ESCAPE CLOSES MENU
+    ====================================================== */
+
+    document.addEventListener(
+
+      "keydown",
+
+      event => {
+
+        if (
+          event.key === "Escape" &&
+          mobileMenu.classList.contains("active")
+        ) {
+
+          mobileMenu.classList.remove(
+            "active"
+          );
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      }
+
+    );
+
+  </script>
+
+</body>
+</html>

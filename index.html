@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Auto Farm</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html, body {
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+      overflow: hidden;
+      user-select: none;
+    }
+    #app { display: flex; flex-direction: column; height: 100vh; padding: 16px; gap: 14px; }
+    .header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 16px; background: #1e293b; border-radius: 16px;
+    }
+    .stat { display: flex; flex-direction: column; }
+    .stat-label { font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+    .stat-value { font-size: 18px; font-weight: 700; color: #fbbf24; }
+    .farm-visual {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; gap: 20px;
+      position: relative;
+    }
+    .balance-big {
+      font-size: 64px; font-weight: 800; color: #fbbf24;
+      text-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+      font-variant-numeric: tabular-nums;
+    }
+    .rate {
+      font-size: 14px; color: #10b981; font-weight: 600;
+    }
+    .farming-icon {
+      font-size: 96px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.08); opacity: 0.85; }
+    }
+    .depleted-overlay {
+      position: absolute; inset: 0; background: rgba(15, 23, 42, 0.85);
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      gap: 12px; border-radius: 16px;
+    }
+    .depleted-overlay h2 { color: #f87171; font-size: 22px; }
+    .depleted-overlay p { color: #cbd5e1; font-size: 14px; }
+    .bar-container {
+      width: 100%; height: 22px; background: #1e293b;
+      border-radius: 12px; overflow: hidden; position: relative;
+      border: 1px solid #334155;
+    }
+    .bar-fill {
+      height: 100%; background: linear-gradient(90deg, #10b981, #06b6d4);
+      transition: width 0.15s linear; border-radius: 12px;
+    }
+    .bar-text {
+      position: absolute; inset: 0; display: flex; justify-content: center; align-items: center;
+      font-size: 11px; font-weight: 600;
+    }
+    .buttons { display: flex; gap: 12px; }
+    button.action-btn {
+      flex: 1; padding: 16px; font-size: 15px; font-weight: 600;
+      border: none; border-radius: 14px; cursor: pointer;
+      transition: transform 0.1s, opacity 0.2s; color: #fff;
+    }
+    button.action-btn:active { transform: scale(0.97); }
+    button.action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    #adBtn { background: linear-gradient(135deg, #10b981, #059669); }
+    #refBtn { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+    .toast {
+      position: fixed; bottom: 100px; left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1e293b; border: 1px solid #334155;
+      padding: 12px 20px; border-radius: 12px; font-size: 14px;
+      opacity: 0; pointer-events: none; transition: all 0.3s ease;
+      max-width: 80%; text-align: center; z-index: 200;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .loading-overlay {
+      position: fixed; inset: 0; background: rgba(15, 23, 42, 0.95);
+      display: flex; justify-content: center; align-items: center;
+      flex-direction: column; gap: 16px; z-index: 100;
+    }
+    .spinner {
+      width: 40px; height: 40px; border: 4px solid #334155;
+      border-top-color: #fbbf24; border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div id="loading" class="loading-overlay">
+    <div class="spinner"></div>
+    <div>Connecting to Telegram...</div>
+  </div>
+
+  <div id="app" class="hidden">
+    <div class="header">
+      <div class="stat">
+        <span class="stat-label">Ads Today</span>
+        <span class="stat-value" id="adsDisplay">0 / 15</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Referrals</span>
+        <span class="stat-value" id="refDisplay">0</span>
+      </div>
+    </div>
+
+    <div class="farm-visual">
+      <div class="farming-icon">🌾</div>
+      <div class="balance-big" id="balanceDisplay">0</div>
+      <div class="rate" id="rateDisplay">+1 / sec</div>
+
+      <div id="depleted" class="depleted-overlay hidden">
+        <h2>⚠️ Farm Depleted</h2>
+        <p>Watch a video to keep farming</p>
+      </div>
+    </div>
+
+    <div class="bar-container">
+      <div class="bar-fill" id="farmFill" style="width: 100%"></div>
+      <div class="bar-text" id="farmText">500 / 500</div>
+    </div>
+
+    <div class="buttons">
+      <button id="adBtn" class="action-btn">🎬 Watch Ad to Continue</button>
+      <button id="refBtn" class="action-btn">👥 Refer</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    // ============================================================
+    // CONFIG — update these
+    // ============================================================
+    const API_BASE = "";                                      // same-origin
+    const ADSGRAM_BLOCK_ID = "YOUR_BLOCK_ID_HERE";            // fill after AdGram approves
+    const BOT_USERNAME = "YOUR_BOT_USERNAME";                 // e.g. MyFarmBot
+    const APP_SHORT_NAME = "play";                            // from BotFather /newapp
+
+    // ============================================================
+    // STATE
+    // ============================================================
+    let tg = window.Telegram?.WebApp;
+    let jwt = null;
+    let adController = null;
+
+    let farm = {
+      balance: 0,
+      farmRemaining: 0,
+      farmCap: 500,
+      farmRate: 1,
+      adsToday: 0,
+      dailyLimit: 15,
+      refCount: 0,
+      syncAt: 0,        // client ms timestamp of last sync
+    };
+
+    // ============================================================
+    // HELPERS
+    // ============================================================
+    function showToast(msg, duration = 2500) {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => t.classList.remove("show"), duration);
+    }
+
+    async function api(path, options = {}) {
+      const headers = { "Content-Type": "application/json", ...(options.headers || {}) };
+      if (jwt) headers["Authorization"] = `Bearer ${jwt}`;
+      const res = await fetch(`${API_BASE}${path}`, { ...options, headers });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.detail || `HTTP ${res.status}`);
+      return data;
+    }
+
+    function applyServerState(data) {
+      farm.balance = data.balance;
+      farm.farmRemaining = data.farm_remaining;
+      farm.farmCap = data.farm_cap;
+      farm.farmRate = data.farm_rate;
+      farm.adsToday = data.ads_watched_today;
+      farm.dailyLimit = data.daily_ad_limit;
+      farm.refCount = data.referral_count;
+      farm.syncAt = Date.now();
+      renderFarm();
+    }
+
+    // Compute live values from elapsed time since last sync
+    function computeLive() {
+      const elapsed = Math.max(0, (Date.now() - farm.syncAt) / 1000);
+      const pending = Math.min(elapsed * farm.farmRate, farm.farmRemaining);
+      return {
+        balance: farm.balance + pending,
+        remaining: Math.max(0, farm.farmRemaining - pending),
+      };
+    }
+
+    function renderFarm() {
+      const { balance, remaining } = computeLive();
+      document.getElementById("balanceDisplay").textContent =
+        Math.floor(balance).toLocaleString();
+      document.getElementById("rateDisplay").textContent =
+        `+${farm.farmRate.toFixed(1)} / sec`;
+      document.getElementById("farmFill").style.width =
+        `${(remaining / farm.farmCap) * 100}%`;
+      document.getElementById("farmText").textContent =
+        `${Math.floor(remaining)} / ${farm.farmCap}`;
+      document.getElementById("adsDisplay").textContent =
+        `${farm.adsToday} / ${farm.dailyLimit}`;
+      document.getElementById("refDisplay").textContent = farm.refCount;
+
+      const depleted = remaining <= 0.01;
+      document.getElementById("depleted").classList.toggle("hidden", !depleted);
+      document.getElementById("adBtn").disabled = farm.adsToday >= farm.dailyLimit;
+    }
+
+    // ============================================================
+    // BOOT
+    // ============================================================
+    async function init() {
+      if (!tg) {
+        document.getElementById("loading").innerHTML =
+          "<div>Open this inside Telegram.</div>";
+        return;
+      }
+      tg.ready();
+      tg.expand();
+
+      const initData = tg.initData;
+      if (!initData) {
+        document.getElementById("loading").innerHTML =
+          "<div>No initData. Open through the bot.</div>";
+        return;
+      }
+
+      try {
+        const authRes = await api("/auth", {
+          method: "POST",
+          body: JSON.stringify({ init_data: initData }),
+        });
+        jwt = authRes.access_token;
+        applyServerState(authRes.user);
+
+        document.getElementById("loading").classList.add("hidden");
+        document.getElementById("app").classList.remove("hidden");
+
+        if (window.Adsgram && ADSGRAM_BLOCK_ID !== "YOUR_BLOCK_ID_HERE") {
+          adController = window.Adsgram.init({ blockId: ADSGRAM_BLOCK_ID });
+        }
+
+        // Handle referral start param
+        const startParam = tg.initDataUnsafe?.start_param;
+        if (startParam && /^\d+$/.test(startParam)) {
+          try {
+            await api("/referral", {
+              method: "POST",
+              body: JSON.stringify({ referral_code: startParam }),
+            });
+            showToast("Referral bonus applied!");
+          } catch (e) { /* ignore */ }
+        }
+
+        // Live UI tick + periodic server sync
+        setInterval(renderFarm, 100);
+        setInterval(refreshProfile, 30000);
+      } catch (err) {
+        document.getElementById("loading").innerHTML =
+          `<div>Failed to connect:<br><small>${err.message}</small></div>`;
+      }
+    }
+
+    async function refreshProfile() {
+      try {
+        const fresh = await api("/user/me");
+        applyServerState(fresh);
+      } catch (e) {
+        console.warn("sync failed:", e.message);
+      }
+    }
+
+    // ============================================================
+    // WATCH AD
+    // ============================================================
+    async function onWatchAd() {
+      const btn = document.getElementById("adBtn");
+      btn.disabled = true;
+
+      // Test mode (no real ad)
+      if (!adController) {
+        try {
+          const res = await api("/reward", { method: "POST" });
+          applyServerState(res);
+          showToast("Farm reset! (test mode)");
+        } catch (e) {
+          showToast(e.message);
+        } finally {
+          btn.disabled = farm.adsToday >= farm.dailyLimit;
+        }
+        return;
+      }
+
+      try {
+        await adController.show();
+        const res = await api("/reward", { method: "POST" });
+        applyServerState(res);
+        showToast("Farm reset! +500 pts");
+      } catch (e) {
+        showToast("Ad not completed");
+      } finally {
+        btn.disabled = farm.adsToday >= farm.dailyLimit;
+      }
+    }
+
+    // ============================================================
+    // REFER
+    // ============================================================
+    function onRefer() {
+      const myId = tg.initDataUnsafe?.user?.id;
+      if (!myId) return;
+      if (BOT_USERNAME === "YOUR_BOT_USERNAME") {
+        showToast("Set BOT_USERNAME in index.html");
+        return;
+      }
+      const link = `https://t.me/${BOT_USERNAME}/${APP_SHORT_NAME}?startapp=${myId}`;
+      tg.openTelegramLink(
+        `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent("Join and start farming!")}`
+      );
+    }
+
+    document.getElementById("adBtn").addEventListener("click", onWatchAd);
+    document.getElementById("refBtn").addEventListener("click", onRefer);
+
+    init();
+  </script>
+</body>
+</html>

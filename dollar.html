@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="M Dollar Tailoring – Bespoke luxury tailoring in Olounde Estate. Premium custom suits, agbada, and traditional attire.">
+  <title>M Dollar Tailoring | Bespoke Luxury Atelier</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0A0908;
+      color: #EAE6DD;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* custom scroll */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1E1B16; }
+    ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+
+    /* gold accent */
+    :root {
+      --gold: #D4AF37;
+      --gold-light: #F3D572;
+      --dark-bg: #0A0908;
+      --card-bg: #14110E;
+      --border-gold: rgba(212, 175, 55, 0.3);
+    }
+
+    h1, h2, h3, .serif {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* animations */
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    .animate-up {
+      animation: fadeUp 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+
+    /* navigation */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: rgba(10, 9, 8, 0.95);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-gold);
+    }
+    .nav-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 700;
+      font-family: 'Cormorant Garamond', serif;
+      background: linear-gradient(135deg, #FFFFFF, var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 1px;
+    }
+    .logo span {
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #EAE6DD;
+      font-weight: 500;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 28px;
+      height: 2px;
+      background: var(--gold);
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+
+    /* buttons */
+    .btn-primary {
+      background: var(--gold);
+      color: #0A0908;
+      padding: 0.9rem 2rem;
+      border-radius: 40px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -8px rgba(212, 175, 55, 0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      padding: 0.9rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .btn-outline:hover {
+      background: rgba(212, 175, 55, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* hero */
+    .hero {
+      padding: 5rem 0 4rem;
+      position: relative;
+      background: radial-gradient(circle at 80% 20%, #1A1612 0%, #0A0908 100%);
+    }
+    .hero-grid {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .hero-content { flex: 1.2; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.15);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(212,175,55,0.3);
+    }
+    .hero h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span {
+      color: var(--gold);
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: #C9C3B0;
+      max-width: 90%;
+      margin: 1rem 0 2rem;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .hero-stats div span {
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--gold);
+    }
+    .hero-visual {
+      flex: 0.8;
+      background: rgba(20, 17, 14, 0.6);
+      border-radius: 2rem;
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px solid var(--border-gold);
+    }
+    .hero-visual i {
+      font-size: 5rem;
+      color: var(--gold);
+    }
+
+    /* section */
+    .section {
+      padding: 5rem 0;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-header h2 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      display: inline-block;
+      border-bottom: 3px solid var(--gold);
+      padding-bottom: 0.5rem;
+    }
+    .section-header p {
+      color: #B8B0A0;
+      margin-top: 1rem;
+    }
+
+    /* services grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .service-card {
+      background: #14110E;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      text-align: center;
+      transition: 0.3s;
+      border: 1px solid #26221C;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--gold);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.5);
+    }
+    .service-card i {
+      font-size: 2.8rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .service-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+    }
+
+    /* gallery placeholder */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.8rem;
+    }
+    .gallery-item {
+      background: #14110E;
+      border-radius: 1.2rem;
+      overflow: hidden;
+      border: 1px solid #26221C;
+      transition: 0.2s;
+    }
+    .gallery-item:hover {
+      border-color: var(--gold);
+      transform: scale(1.02);
+    }
+    .gallery-img {
+      height: 280px;
+      background: linear-gradient(135deg, #2A241E, #1A1612);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gallery-img i {
+      font-size: 3rem;
+      color: var(--gold);
+      opacity: 0.7;
+    }
+    .gallery-caption {
+      padding: 1rem;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    /* about & location */
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      background: #14110E;
+      border-radius: 2rem;
+      padding: 2.5rem;
+      border: 1px solid #26221C;
+    }
+    .info-col {
+      flex: 1;
+    }
+    .info-col h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.2rem 0;
+    }
+    .contact-detail i {
+      width: 40px;
+      height: 40px;
+      background: rgba(212,175,55,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+    }
+
+    /* footer */
+    footer {
+      background: #060504;
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border-gold);
+      font-size: 0.85rem;
+    }
+
+    /* responsive */
+    @media (max-width: 850px) {
+      .container { padding: 0 24px; }
+      .hero h1 { font-size: 2.8rem; }
+      .hero-grid { flex-direction: column; text-align: center; }
+      .hero p { max-width: 100%; }
+      .hero-stats { justify-content: center; }
+      .hamburger { display: flex; }
+      .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 70%;
+        height: 100vh;
+        background: #0A0908;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: left 0.3s;
+        z-index: 1001;
+      }
+      .nav-links.active { left: 0; }
+      .info-row { flex-direction: column; }
+    }
+    @media (max-width: 550px) {
+      .section-header h2 { font-size: 2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-flex">
+    <div class="logo">M DOLLAR <span>TAILORING</span></div>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Portfolio</a></li>
+      <li><a href="#contact">Visit Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge animate-up"><i class="fas fa-scissors"></i> Bespoke Atelier</div>
+        <h1 class="animate-up delay-1">Where <span>Luxury</span><br>Meets Precision</h1>
+        <p class="animate-up delay-2">M Dollar Tailoring crafts exceptional custom garments – from regal agbadas to modern suits. Every stitch is a statement of elegance.</p>
+        <div class="hero-stats animate-up delay-3">
+          <div><span>10+</span><br>Years Experience</div>
+          <div><span>500+</span><br>Happy Clients</div>
+          <div><span>100%</span><br>Handcrafted</div>
+        </div>
+        <div class="animate-up delay-3">
+          <a href="#contact" class="btn-primary"><i class="fas fa-calendar-alt"></i> Book Consultation</a>
+        </div>
+      </div>
+      <div class="hero-visual animate-up delay-2">
+        <i class="fas fa-tshirt"></i>
+        <div style="margin-top: 1rem; font-weight: 500;">Premium Fabrics · Master Tailoring</div>
+        <div style="font-size: 0.8rem; color: #C9C3B0;">Made to measure perfection</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Craftsmanship</h2>
+        <p>Bespoke tailoring for the discerning gentleman & woman</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <i class="fas fa-user-tie"></i>
+          <h3>Senator & Agbada</h3>
+          <p>Traditional Nigerian attire with contemporary fits, premium brocade and hand embroidery.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-vest"></i>
+          <h3>Bespoke Suits</h3>
+          <p>Corporate & evening suits tailored to your exact measurements. Italian wool, linen, cashmere.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-gem"></i>
+          <h3>Bridal & Evening</h3>
+          <p>Custom gowns, wedding attire, and native wear for unforgettable occasions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery (Luxury Showcase) -->
+  <section id="gallery" class="section" style="background: #0E0C0A;">
+    <div class="container">
+      <div class="section-header">
+        <h2>Masterpieces</h2>
+        <p>Recent works – where heritage meets modernity</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <div class="gallery-img"><i class="fas fa-tshirt"></i></div>
+          <div class="gallery-caption">Premium Agbada · Gold embroidery</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-img"><i class="fas fa-user-tie"></i></div>
+          <div class="gallery-caption">Executive suit · Italian wool</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-img"><i class="fas fa-female"></i></div>
+          <div class="gallery-caption">Bridal native gown · Aso-oke</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location & Contact (High-end details) -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>The Atelier</h2>
+        <p>Visit our luxury tailoring house in Olounde Estate</p>
+      </div>
+      <div class="info-row">
+        <div class="info-col">
+          <h3>Visit Us</h3>
+          <div class="contact-detail">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>Olounde Estate, Opposite Omotoyosi School, Lagos</div>
+          </div>
+          <div class="contact-detail">
+            <i class="fas fa-phone-alt"></i>
+            <div><a href="tel:07018791379" style="color: var(--gold); text-decoration: none;">0701 879 1379</a></div>
+          </div>
+          <div class="contact-detail">
+            <i class="fas fa-clock"></i>
+            <div>Mon – Sat: 9am – 6pm | By appointment</div>
+          </div>
+        </div>
+        <div class="info-col">
+          <h3>Make an Inquiry</h3>
+          <p>Book a private fitting or request a quote. We respond within 24 hours.</p>
+          <a href="tel:07018791379" class="btn-primary" style="margin-top: 1rem; display: inline-block;"><i class="fas fa-phone"></i> Call Now</a>
+          <div style="margin-top: 1.2rem;">
+            <a href="#" style="color: var(--gold); text-decoration: none;">📧 mdollar.tailoring@luxury.ng</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2025 M Dollar Tailoring — Bespoke Luxury Atelier. Crafted with precision in Olounde Estate.</p>
+    <p style="margin-top: 0.5rem; font-size: 0.75rem;">📍 Opposite Omotoyosi School · 0701 879 1379</p>
+  </div>
+</footer>
+
+<script>
+  // Hamburger toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  }
+  // Close on link click and smooth scroll
+  document.querySelectorAll('.nav-links a, .btn-primary, .btn-outline, a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId.startsWith('#') && targetId !== '#') {
+        e.preventDefault();
+        const target = document.querySelector(targetId);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+  console.log("M Dollar Tailoring — luxury site ready");
+</script>
+</body>
+</html>
+
+//Change the color and sleek of the website and also the format to something better than this and also highly responsive and fast loading with no lagging//

@@ -1,0 +1,2685 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Mobile-first viewport -->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta name="theme-color" content="#0b0b0b">
+
+  <meta
+    name="description"
+    content="TUNADE SIGNATURE — Custom embroidery, monogram and personalised clothing and cap detailing in Sabo."
+  >
+
+  <title>TUNADE SIGNATURE — Custom Embroidery & Monogram</title>
+
+  <!-- Lightweight fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    /* =========================================================
+       TUNADE SIGNATURE
+       PREMIUM + PERFORMANCE FIRST
+       ========================================================= */
+
+    :root {
+      --black: #080808;
+      --black-2: #0e0e0e;
+      --black-3: #151515;
+
+      --white: #f6f4ef;
+      --muted: #a8a59d;
+
+      --gold: #c6a15b;
+      --gold-light: #e1c47d;
+
+      --border: rgba(255,255,255,.09);
+
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+
+      --container: 1180px;
+
+      --radius: 4px;
+    }
+
+    /* ---------------- RESET ---------------- */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--sans);
+      line-height: 1.6;
+
+      overflow-x: hidden;
+
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    button,
+    a,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: #000;
+    }
+
+    /* ---------------- ACCESSIBILITY ---------------- */
+
+    :focus-visible {
+      outline: 2px solid var(--gold-light);
+      outline-offset: 4px;
+    }
+
+    /* ---------------- CONTAINER ---------------- */
+
+    .container {
+      width: min(
+        calc(100% - 32px),
+        var(--container)
+      );
+
+      margin-inline: auto;
+    }
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
+    .header {
+      position: fixed;
+      inset: 0 0 auto 0;
+
+      z-index: 1000;
+
+      background: rgba(8,8,8,.88);
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      border-bottom: 1px solid var(--border);
+
+      padding-top: env(safe-area-inset-top);
+    }
+
+    .nav {
+      min-height: 72px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      flex-direction: column;
+
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .brand-main {
+      font-family: var(--serif);
+      font-size: 20px;
+      letter-spacing: .12em;
+    }
+
+    .brand-sub {
+      margin-top: 5px;
+
+      color: var(--gold);
+
+      font-size: 8px;
+      font-weight: 700;
+
+      letter-spacing: .32em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      position: relative;
+
+      color: #ddd;
+
+      font-size: 12px;
+      font-weight: 600;
+
+      letter-spacing: .08em;
+      text-transform: uppercase;
+
+      transition:
+        color .2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      bottom: -8px;
+
+      width: 0;
+      height: 1px;
+
+      background: var(--gold);
+
+      transition: width .2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 11px 17px;
+
+      background: var(--gold);
+
+      color: #080808 !important;
+
+      border-radius: var(--radius);
+
+      font-size: 11px !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold-light);
+    }
+
+    .nav-cta::after {
+      display: none;
+    }
+
+    .menu-button {
+      display: none;
+
+      width: 44px;
+      height: 44px;
+
+      background: transparent;
+
+      cursor: pointer;
+
+      align-items: center;
+      justify-content: center;
+
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .menu-button span {
+      width: 23px;
+      height: 1.5px;
+
+      background: var(--white);
+
+      transition:
+        transform .25s ease,
+        opacity .25s ease;
+    }
+
+    .menu-button.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .menu-button.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-button.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .hero {
+      min-height: 100svh;
+
+      display: flex;
+      align-items: center;
+
+      padding:
+        120px 0
+        60px;
+
+      position: relative;
+
+      isolation: isolate;
+
+      background:
+        radial-gradient(
+          circle at 75% 35%,
+          rgba(198,161,91,.12),
+          transparent 34%
+        ),
+        var(--black);
+    }
+
+    .hero-grid {
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, .95fr)
+        minmax(0, 1.05fr);
+
+      align-items: center;
+
+      gap: clamp(40px, 7vw, 100px);
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      color: var(--gold);
+
+      font-size: 10px;
+      font-weight: 700;
+
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+
+      width: 32px;
+      height: 1px;
+
+      background: var(--gold);
+    }
+
+    .hero h1 {
+      margin-top: 22px;
+
+      font-family: var(--serif);
+
+      font-size: clamp(
+        3rem,
+        7vw,
+        6.5rem
+      );
+
+      font-weight: 500;
+
+      line-height: .98;
+
+      letter-spacing: -.045em;
+    }
+
+    .hero h1 em {
+      color: var(--gold);
+
+      font-style: normal;
+    }
+
+    .hero-description {
+      max-width: 530px;
+
+      margin-top: 26px;
+
+      color: var(--muted);
+
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+      margin-top: 34px;
+    }
+
+    .button {
+      min-height: 48px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 22px;
+
+      border-radius: var(--radius);
+
+      font-size: 11px;
+      font-weight: 700;
+
+      letter-spacing: .12em;
+      text-transform: uppercase;
+
+      cursor: pointer;
+
+      transition:
+        transform .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--gold);
+      color: #050505;
+    }
+
+    .button-primary:hover {
+      background: var(--gold-light);
+    }
+
+    .button-secondary {
+      border: 1px solid rgba(198,161,91,.55);
+
+      color: var(--gold);
+
+      background: transparent;
+    }
+
+    .button-secondary:hover {
+      border-color: var(--gold);
+      background: rgba(198,161,91,.07);
+    }
+
+    .hero-note {
+      margin-top: 28px;
+
+      color: #77746e;
+
+      font-size: 11px;
+
+      letter-spacing: .04em;
+    }
+
+    /* Hero image */
+
+    .hero-image-wrap {
+      position: relative;
+
+      max-width: 600px;
+
+      margin-left: auto;
+    }
+
+    .hero-image {
+      aspect-ratio: 4 / 5;
+
+      object-fit: cover;
+
+      background: #141414;
+
+      border-radius: 2px;
+    }
+
+    .hero-image-frame {
+      position: absolute;
+
+      inset: 16px -16px -16px 16px;
+
+      border: 1px solid rgba(198,161,91,.38);
+
+      pointer-events: none;
+
+      z-index: -1;
+    }
+
+    .image-label {
+      position: absolute;
+
+      right: 18px;
+      bottom: 18px;
+
+      padding: 10px 14px;
+
+      background: rgba(8,8,8,.8);
+
+      border-left: 2px solid var(--gold);
+
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .image-label strong {
+      display: block;
+
+      color: var(--white);
+
+      font-family: var(--serif);
+
+      font-size: 17px;
+    }
+
+    .image-label span {
+      display: block;
+
+      margin-top: 2px;
+
+      color: var(--gold);
+
+      font-size: 8px;
+
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       INTRO STRIP
+       ========================================================= */
+
+    .intro-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+
+      background: var(--black-2);
+    }
+
+    .intro-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+    }
+
+    .intro-item {
+      min-height: 125px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      padding: 25px;
+
+      border-right: 1px solid var(--border);
+    }
+
+    .intro-item:last-child {
+      border-right: 0;
+    }
+
+    .intro-number {
+      color: var(--gold);
+
+      font-family: var(--serif);
+
+      font-size: 26px;
+    }
+
+    .intro-title {
+      margin-top: 5px;
+
+      color: var(--white);
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .intro-text {
+      margin-top: 4px;
+
+      color: #777;
+
+      font-size: 11px;
+    }
+
+    /* =========================================================
+       SERVICES
+       ========================================================= */
+
+    section {
+      scroll-margin-top: 85px;
+    }
+
+    .section {
+      padding: clamp(75px, 10vw, 130px) 0;
+    }
+
+    .section-header {
+      display: grid;
+
+      grid-template-columns: .7fr 1.3fr;
+
+      gap: 30px;
+
+      align-items: end;
+
+      margin-bottom: 55px;
+    }
+
+    .section-kicker {
+      color: var(--gold);
+
+      font-size: 10px;
+      font-weight: 700;
+
+      letter-spacing: .25em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin-top: 10px;
+
+      font-family: var(--serif);
+
+      font-size: clamp(
+        2.2rem,
+        5vw,
+        4.5rem
+      );
+
+      font-weight: 500;
+
+      line-height: 1;
+      letter-spacing: -.035em;
+    }
+
+    .section-description {
+      max-width: 580px;
+
+      color: var(--muted);
+
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .services {
+      background: var(--black);
+    }
+
+    .services-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 1px;
+
+      background: var(--border);
+
+      border: 1px solid var(--border);
+    }
+
+    .service-card {
+      min-height: 270px;
+
+      padding: 34px;
+
+      background: var(--black-2);
+
+      position: relative;
+
+      transition:
+        background .25s ease;
+    }
+
+    .service-card:hover {
+      background: #121212;
+    }
+
+    .service-index {
+      color: #555;
+
+      font-size: 11px;
+
+      letter-spacing: .12em;
+    }
+
+    .service-icon {
+      width: 45px;
+      height: 45px;
+
+      display: grid;
+      place-items: center;
+
+      margin-top: 35px;
+
+      border: 1px solid rgba(198,161,91,.4);
+
+      color: var(--gold);
+
+      font-size: 17px;
+    }
+
+    .service-card h3 {
+      margin-top: 24px;
+
+      font-family: var(--serif);
+
+      font-size: 25px;
+
+      font-weight: 500;
+    }
+
+    .service-card p {
+      margin-top: 9px;
+
+      color: #85827b;
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    /* =========================================================
+       STATEMENT / BRAND STORY
+       ========================================================= */
+
+    .statement {
+      background: var(--black-2);
+
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .statement-inner {
+      display: grid;
+
+      grid-template-columns:
+        .8fr 1.2fr;
+
+      gap: clamp(40px, 8vw, 120px);
+
+      align-items: center;
+    }
+
+    .statement-image {
+      aspect-ratio: 1 / 1.05;
+
+      object-fit: cover;
+
+      background: #161616;
+    }
+
+    .statement-content {
+      padding: 20px 0;
+    }
+
+    .statement-content blockquote {
+      font-family: var(--serif);
+
+      font-size: clamp(
+        2.2rem,
+        4.5vw,
+        4.5rem
+      );
+
+      line-height: 1.08;
+
+      letter-spacing: -.035em;
+    }
+
+    .statement-content blockquote span {
+      color: var(--gold);
+    }
+
+    .statement-content p {
+      max-width: 520px;
+
+      margin-top: 28px;
+
+      color: var(--muted);
+
+      font-size: 14px;
+
+      line-height: 1.9;
+    }
+
+    /* =========================================================
+       PROCESS
+       ========================================================= */
+
+    .process {
+      background: #0a0a0a;
+    }
+
+    .process-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .process-item {
+      display: grid;
+
+      grid-template-columns: 90px 1fr auto;
+
+      gap: 25px;
+
+      align-items: center;
+
+      padding: 27px 0;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .process-number {
+      color: var(--gold);
+
+      font-family: var(--serif);
+
+      font-size: 27px;
+    }
+
+    .process-item h3 {
+      font-family: var(--serif);
+
+      font-size: 24px;
+
+      font-weight: 500;
+    }
+
+    .process-item p {
+      margin-top: 4px;
+
+      color: #777;
+
+      font-size: 12px;
+    }
+
+    .process-arrow {
+      color: #555;
+
+      font-size: 20px;
+    }
+
+    /* =========================================================
+       LOOKBOOK
+       ========================================================= */
+
+    .lookbook {
+      background: var(--black-2);
+    }
+
+    .gallery-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(12, 1fr);
+
+      gap: 12px;
+    }
+
+    .gallery-item {
+      position: relative;
+
+      overflow: hidden;
+
+      background: #151515;
+    }
+
+    .gallery-item:nth-child(1) {
+      grid-column: span 7;
+    }
+
+    .gallery-item:nth-child(2) {
+      grid-column: span 5;
+    }
+
+    .gallery-item:nth-child(3) {
+      grid-column: span 5;
+    }
+
+    .gallery-item:nth-child(4) {
+      grid-column: span 7;
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 100%;
+
+      min-height: 360px;
+
+      object-fit: cover;
+
+      transition:
+        transform .5s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .gallery-item:hover .gallery-image {
+      transform: scale(1.025);
+    }
+
+    .gallery-caption {
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      padding: 25px;
+
+      background:
+        linear-gradient(
+          transparent,
+          rgba(0,0,0,.85)
+        );
+
+      padding-top: 70px;
+    }
+
+    .gallery-caption span {
+      color: var(--gold);
+
+      font-size: 9px;
+      font-weight: 700;
+
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .gallery-caption h3 {
+      margin-top: 4px;
+
+      font-family: var(--serif);
+
+      font-size: 24px;
+
+      font-weight: 500;
+    }
+
+    /* =========================================================
+       CUSTOM ORDER CTA
+       ========================================================= */
+
+    .custom {
+      position: relative;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 80% 30%,
+          rgba(198,161,91,.13),
+          transparent 30%
+        ),
+        #080808;
+    }
+
+    .custom-inner {
+      max-width: 900px;
+
+      margin-inline: auto;
+
+      text-align: center;
+    }
+
+    .custom-inner .section-title {
+      max-width: 750px;
+
+      margin-inline: auto;
+    }
+
+    .custom-inner p {
+      max-width: 600px;
+
+      margin: 25px auto 0;
+
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    .custom-buttons {
+      display: flex;
+
+      justify-content: center;
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+      margin-top: 32px;
+    }
+
+    /* =========================================================
+       CONTACT
+       ========================================================= */
+
+    .contact {
+      background: var(--black-2);
+
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-grid {
+      display: grid;
+
+      grid-template-columns:
+        .9fr 1.1fr;
+
+      gap: 70px;
+    }
+
+    .contact-details {
+      margin-top: 30px;
+    }
+
+    .contact-line {
+      display: flex;
+
+      gap: 15px;
+
+      padding: 16px 0;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-symbol {
+      width: 30px;
+
+      color: var(--gold);
+
+      font-size: 14px;
+    }
+
+    .contact-line small {
+      display: block;
+
+      color: #666;
+
+      font-size: 9px;
+
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .contact-line strong {
+      display: block;
+
+      margin-top: 3px;
+
+      color: #ddd;
+
+      font-size: 13px;
+
+      font-weight: 500;
+    }
+
+    .contact-form {
+      padding: 30px;
+
+      border: 1px solid var(--border);
+
+      background: #101010;
+    }
+
+    .form-row {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 12px;
+    }
+
+    .field {
+      margin-bottom: 13px;
+    }
+
+    .field label {
+      display: block;
+
+      margin-bottom: 7px;
+
+      color: #777;
+
+      font-size: 9px;
+
+      font-weight: 700;
+
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+
+      border: 1px solid #282828;
+
+      background: #090909;
+
+      color: var(--white);
+
+      border-radius: 2px;
+
+      padding: 13px 14px;
+
+      outline: none;
+
+      font-size: 12px;
+
+      transition:
+        border-color .2s ease;
+    }
+
+    .field textarea {
+      resize: vertical;
+
+      min-height: 115px;
+    }
+
+    .field select {
+      appearance: none;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: rgba(198,161,91,.7);
+    }
+
+    .form-submit {
+      width: 100%;
+
+      margin-top: 5px;
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    footer {
+      padding:
+        55px 0
+        calc(55px + env(safe-area-inset-bottom));
+
+      background: #050505;
+
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-start;
+
+      gap: 30px;
+    }
+
+    .footer-brand {
+      font-family: var(--serif);
+
+      font-size: 23px;
+
+      letter-spacing: .08em;
+    }
+
+    .footer-brand span {
+      color: var(--gold);
+    }
+
+    .footer-copy {
+      max-width: 360px;
+
+      margin-top: 8px;
+
+      color: #666;
+
+      font-size: 10px;
+
+      line-height: 1.7;
+    }
+
+    .footer-right {
+      text-align: right;
+
+      color: #666;
+
+      font-size: 10px;
+
+      line-height: 1.8;
+    }
+
+    .footer-right strong {
+      color: var(--gold);
+
+      font-weight: 500;
+    }
+
+    /* =========================================================
+       WHATSAPP FLOAT
+       ========================================================= */
+
+    .whatsapp {
+      position: fixed;
+
+      right: 18px;
+      bottom: calc(
+        18px + env(safe-area-inset-bottom)
+      );
+
+      z-index: 900;
+
+      width: 54px;
+      height: 54px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 50%;
+
+      background: #111;
+
+      border: 1px solid rgba(198,161,91,.55);
+
+      color: var(--gold);
+
+      box-shadow:
+        0 10px 30px rgba(0,0,0,.45);
+
+      font-size: 21px;
+
+      transition:
+        transform .2s ease,
+        background .2s ease;
+    }
+
+    .whatsapp:hover {
+      transform: translateY(-3px);
+
+      background: #181818;
+    }
+
+    /* =========================================================
+       SCROLL REVEAL
+       ========================================================= */
+
+    .reveal {
+      opacity: 0;
+
+      transform: translateY(22px);
+
+      transition:
+        opacity .65s ease,
+        transform .65s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       MOBILE NAV
+       ========================================================= */
+
+    @media (max-width: 800px) {
+
+      .nav {
+        min-height: 64px;
+      }
+
+      .menu-button {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+
+        top: calc(
+          64px + env(safe-area-inset-top)
+        );
+
+        left: 0;
+        right: 0;
+
+        height: calc(
+          100svh - 64px
+        );
+
+        padding: 40px 25px;
+
+        background: rgba(8,8,8,.97);
+
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+
+        gap: 28px;
+
+        transform: translateX(100%);
+
+        transition:
+          transform .3s ease;
+
+        visibility: hidden;
+      }
+
+      .nav-links.active {
+        transform: translateX(0);
+
+        visibility: visible;
+      }
+
+      .nav-links a {
+        font-size: 14px;
+      }
+
+      .nav-cta {
+        padding: 13px 22px;
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      .hero {
+        min-height: auto;
+
+        padding-top: 120px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+
+        gap: 55px;
+      }
+
+      .hero-content {
+        text-align: left;
+      }
+
+      .hero-image-wrap {
+        width: calc(100% - 12px);
+
+        margin-right: 12px;
+      }
+
+      .hero-image-frame {
+        inset: 12px -12px -12px 12px;
+      }
+
+      .section-header {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card {
+        min-height: auto;
+
+        padding: 28px;
+      }
+
+      .statement-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .statement-image {
+        max-width: 650px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item:nth-child(n) {
+        grid-column: auto;
+      }
+
+      .gallery-image {
+        min-height: 400px;
+      }
+    }
+
+    /* =========================================================
+       SMALL PHONES
+       ========================================================= */
+
+    @media (max-width: 500px) {
+
+      .container {
+        width: min(
+          calc(100% - 28px),
+          var(--container)
+        );
+      }
+
+      .brand-main {
+        font-size: 17px;
+      }
+
+      .hero {
+        padding-top: 105px;
+        padding-bottom: 45px;
+      }
+
+      .hero h1 {
+        font-size: clamp(
+          2.8rem,
+          15vw,
+          4.2rem
+        );
+      }
+
+      .hero-description {
+        font-size: 13px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .intro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-item {
+        min-height: auto;
+
+        padding: 20px;
+
+        border-right: 0;
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .intro-item:last-child {
+        border-bottom: 0;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .section-title {
+        font-size: 2.45rem;
+      }
+
+      .process-item {
+        grid-template-columns: 48px 1fr;
+
+        gap: 15px;
+      }
+
+      .process-arrow {
+        display: none;
+      }
+
+      .process-item h3 {
+        font-size: 21px;
+      }
+
+      .gallery-image {
+        min-height: 330px;
+      }
+
+      .gallery-caption {
+        padding: 20px;
+
+        padding-top: 60px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+      }
+
+      .contact-form {
+        padding: 20px;
+      }
+
+      .footer-grid {
+        flex-direction: column;
+      }
+
+      .footer-right {
+        text-align: left;
+      }
+
+      .whatsapp {
+        width: 50px;
+        height: 50px;
+
+        right: 14px;
+      }
+    }
+
+    /* =========================================================
+       REDUCED MOTION
+       ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+
+        transform: none;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- =======================================================
+       HEADER
+       ======================================================= -->
+
+  <header class="header">
+
+    <div class="container nav">
+
+      <a href="#home" class="brand" aria-label="TUNADE SIGNATURE home">
+        <span class="brand-main">TUNADE</span>
+        <span class="brand-sub">SIGNATURE</span>
+      </a>
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Open navigation"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav
+        class="nav-links"
+        id="navLinks"
+        aria-label="Main navigation"
+      >
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+
+        <a
+          class="nav-cta"
+          href="https://wa.me/2348000000000"
+          target="_blank"
+          rel="noopener"
+        >
+          WhatsApp
+        </a>
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <main id="home">
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <section class="hero">
+
+      <div class="container hero-grid">
+
+        <div class="hero-content reveal">
+
+          <div class="eyebrow">
+            Custom Embroidery & Monogram
+          </div>
+
+          <h1>
+            Your Design.<br>
+            Your <em>Signature.</em>
+          </h1>
+
+          <p class="hero-description">
+            Premium custom embroidery, monogram and personalised
+            detailing for clothing and caps. Designed with precision,
+            produced with care and finished by hand in Sabo.
+          </p>
+
+          <div class="hero-actions">
+
+            <a
+              href="#gallery"
+              class="button button-primary"
+            >
+              Explore Our Work
+            </a>
+
+            <a
+              href="https://wa.me/2348000000000"
+              target="_blank"
+              rel="noopener"
+              class="button button-secondary"
+            >
+              Start a Custom Order
+            </a>
+
+          </div>
+
+          <p class="hero-note">
+            Custom names · Logos · Monograms · Designs · Caps · Clothing
+          </p>
+
+        </div>
+
+
+        <div class="hero-image-wrap reveal">
+
+          <!-- Replace with client's real image -->
+          <img
+            class="hero-image"
+            src="c:\Users\olale\Downloads\tunade-hero.jpg"
+            alt="TUNADE SIGNATURE custom embroidered fashion"
+            fetchpriority="high"
+          >
+
+          <div class="hero-image-frame"></div>
+
+          <div class="image-label">
+            <strong>Made to Stand Out</strong>
+            <span>Custom Work · Sabo</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         INTRO STRIP
+         ===================================================== -->
+
+    <section class="intro-strip">
+
+      <div class="container intro-grid">
+
+        <div class="intro-item reveal">
+          <span class="intro-number">01</span>
+          <span class="intro-title">Custom Designs</span>
+          <span class="intro-text">
+            Your idea, logo, name or monogram.
+          </span>
+        </div>
+
+        <div class="intro-item reveal">
+          <span class="intro-number">02</span>
+          <span class="intro-title">Precision Embroidery</span>
+          <span class="intro-text">
+            Detailed machine embroidery with careful handling.
+          </span>
+        </div>
+
+        <div class="intro-item reveal">
+          <span class="intro-number">03</span>
+          <span class="intro-title">Personal Finishing</span>
+          <span class="intro-text">
+            Every piece receives attention before it leaves us.
+          </span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SERVICES
+         ===================================================== -->
+
+    <section
+      class="section services"
+      id="services"
+    >
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div>
+            <div class="section-kicker">
+              What We Create
+            </div>
+
+            <h2 class="section-title">
+              Made Personal.
+            </h2>
+          </div>
+
+          <p class="section-description">
+            From a simple name on a cap to a detailed monogram or
+            branded design on clothing, TUNADE SIGNATURE turns
+            ordinary pieces into something uniquely yours.
+          </p>
+
+        </div>
+
+
+        <div class="services-grid">
+
+          <article class="service-card reveal">
+            <span class="service-index">01 / 06</span>
+
+            <div class="service-icon">✦</div>
+
+            <h3>Monogram</h3>
+
+            <p>
+              Personal initials, names and signature marks
+              embroidered onto clothing and accessories.
+            </p>
+          </article>
+
+
+          <article class="service-card reveal">
+            <span class="service-index">02 / 06</span>
+
+            <div class="service-icon">⌁</div>
+
+            <h3>Cap Embroidery</h3>
+
+            <p>
+              Custom names, symbols, logos and designs
+              created specifically for caps.
+            </p>
+          </article>
+
+
+          <article class="service-card reveal">
+            <span class="service-index">03 / 06</span>
+
+            <div class="service-icon">◇</div>
+
+            <h3>Clothing Detail</h3>
+
+            <p>
+              Add distinctive embroidery to shirts, native wear,
+              jackets, uniforms and other garments.
+            </p>
+          </article>
+
+
+          <article class="service-card reveal">
+            <span class="service-index">04 / 06</span>
+
+            <div class="service-icon">+</div>
+
+            <h3>Logo Embroidery</h3>
+
+            <p>
+              Transform a business or personal logo into
+              detailed embroidered artwork.
+            </p>
+          </article>
+
+
+          <article class="service-card reveal">
+            <span class="service-index">05 / 06</span>
+
+            <div class="service-icon">✧</div>
+
+            <h3>Custom Designs</h3>
+
+            <p>
+              Bring your own concept and let us help turn
+              the idea into an embroidery-ready design.
+            </p>
+          </article>
+
+
+          <article class="service-card reveal">
+            <span class="service-index">06 / 06</span>
+
+            <div class="service-icon">∞</div>
+
+            <h3>Brand Orders</h3>
+
+            <p>
+              Custom embroidery for businesses, teams,
+              events and personalised fashion projects.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         BRAND STATEMENT
+         ===================================================== -->
+
+    <section class="section statement">
+
+      <div class="container statement-inner">
+
+        <div class="reveal">
+
+          <!-- Replace image -->
+          <img
+            class="statement-image"
+            src="c:\Users\olale\Downloads\tunade-machine.jpg"
+            alt="Custom embroidery production at TUNADE SIGNATURE"
+            loading="lazy"
+          >
+
+        </div>
+
+
+        <div class="statement-content reveal">
+
+          <div class="section-kicker">
+            The TUNADE Standard
+          </div>
+
+          <blockquote>
+            Made by machine.<br>
+            Guided by <span>human precision.</span>
+          </blockquote>
+
+          <p>
+            Great embroidery is not only about putting a design
+            onto fabric. It is about getting the details right —
+            the placement, finish, proportions and overall appearance.
+            Every custom piece is handled with attention from design
+            preparation through final finishing.
+          </p>
+
+          <a
+            href="#contact"
+            class="button button-secondary"
+            style="margin-top:28px;"
+          >
+            Discuss Your Design
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PROCESS
+         ===================================================== -->
+
+    <section
+      class="section process"
+      id="process"
+    >
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div>
+            <div class="section-kicker">
+              Simple Process
+            </div>
+
+            <h2 class="section-title">
+              From Idea<br>to Signature.
+            </h2>
+          </div>
+
+          <p class="section-description">
+            Getting your custom piece started is simple.
+            Send us your idea, choose what you want customised,
+            and we'll guide you through the next step.
+          </p>
+
+        </div>
+
+
+        <div class="process-list">
+
+          <div class="process-item reveal">
+
+            <div class="process-number">01</div>
+
+            <div>
+              <h3>Send Your Design</h3>
+              <p>
+                Send your logo, name, reference or idea through WhatsApp.
+              </p>
+            </div>
+
+            <div class="process-arrow">→</div>
+
+          </div>
+
+
+          <div class="process-item reveal">
+
+            <div class="process-number">02</div>
+
+            <div>
+              <h3>Choose Your Piece</h3>
+              <p>
+                Tell us what you want customised — cap, shirt,
+                native wear or another garment.
+              </p>
+            </div>
+
+            <div class="process-arrow">→</div>
+
+          </div>
+
+
+          <div class="process-item reveal">
+
+            <div class="process-number">03</div>
+
+            <div>
+              <h3>Design Preparation</h3>
+              <p>
+                Your artwork is prepared for embroidery and
+                checked for suitable placement and detail.
+              </p>
+            </div>
+
+            <div class="process-arrow">→</div>
+
+          </div>
+
+
+          <div class="process-item reveal">
+
+            <div class="process-number">04</div>
+
+            <div>
+              <h3>Embroidery</h3>
+              <p>
+                The design is carefully produced using our
+                embroidery equipment.
+              </p>
+            </div>
+
+            <div class="process-arrow">→</div>
+
+          </div>
+
+
+          <div class="process-item reveal">
+
+            <div class="process-number">05</div>
+
+            <div>
+              <h3>Final Finishing</h3>
+              <p>
+                The completed piece is inspected and prepared
+                before collection or delivery.
+              </p>
+            </div>
+
+            <div class="process-arrow">✓</div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         GALLERY
+         ===================================================== -->
+
+    <section
+      class="section lookbook"
+      id="gallery"
+    >
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div>
+            <div class="section-kicker">
+              Selected Work
+            </div>
+
+            <h2 class="section-title">
+              The Lookbook.
+            </h2>
+          </div>
+
+          <p class="section-description">
+            A glimpse of the kind of custom work TUNADE SIGNATURE
+            creates. Replace these images with the client's actual
+            embroidery and monogram work.
+          </p>
+
+        </div>
+
+
+        <div class="gallery-grid">
+
+          <article class="gallery-item reveal">
+
+            <img
+              class="gallery-image"
+              src="c:\Users\olale\Downloads\tunade-work-1.jpg"
+              alt="Custom embroidered clothing"
+              loading="lazy"
+            >
+
+            <div class="gallery-caption">
+              <span>01 / Clothing</span>
+              <h3>Signature Detail</h3>
+            </div>
+
+          </article>
+
+
+          <article class="gallery-item reveal">
+
+            <img
+              class="gallery-image"
+              src="c:\Users\olale\Downloads\tunade-work-2.jpg"
+              alt="Custom embroidered cap"
+              loading="lazy"
+            >
+
+            <div class="gallery-caption">
+              <span>02 / Caps</span>
+              <h3>Personal Mark</h3>
+            </div>
+
+          </article>
+
+
+          <article class="gallery-item reveal">
+
+            <img
+              class="gallery-image"
+              src="c:\Users\olale\Downloads\tunade-work-3.jpg"
+              alt="Custom monogram embroidery"
+              loading="lazy"
+            >
+
+            <div class="gallery-caption">
+              <span>03 / Monogram</span>
+              <h3>Made Personal</h3>
+            </div>
+
+          </article>
+
+
+          <article class="gallery-item reveal">
+
+            <img
+              class="gallery-image"
+              src="c:\Users\olale\Downloads\tunade-work-4.jpg"
+              alt="Custom logo embroidery"
+              loading="lazy"
+            >
+
+            <div class="gallery-caption">
+              <span>04 / Branding</span>
+              <h3>Wear Your Identity</h3>
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CUSTOM CTA
+         ===================================================== -->
+
+    <section class="section custom">
+
+      <div class="container custom-inner">
+
+        <div class="section-kicker reveal">
+          Have Something in Mind?
+        </div>
+
+        <h2 class="section-title reveal">
+          Let's turn your idea into something you can wear.
+        </h2>
+
+        <p class="reveal">
+          Send your design, logo, name or inspiration and
+          let's discuss the best way to bring it to life.
+        </p>
+
+        <div class="custom-buttons reveal">
+
+          <a
+            href="https://wa.me/2349058049243"
+            target="_blank"
+            rel="noopener"
+            class="button button-primary"
+          >
+            WhatsApp TUNADE
+          </a>
+
+          <a
+            href="#contact"
+            class="button button-secondary"
+          >
+            Send an Inquiry
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTACT
+         ===================================================== -->
+
+    <section
+      class="section contact"
+      id="contact"
+    >
+
+      <div class="container contact-grid">
+
+        <div class="reveal">
+
+          <div class="section-kicker">
+            Visit / Contact
+          </div>
+
+          <h2 class="section-title">
+            Let's create<br>your next piece.
+          </h2>
+
+          <p class="section-description" style="margin-top:24px;">
+            For enquiries, custom designs, pricing and orders,
+            contact TUNADE SIGNATURE directly.
+          </p>
+
+
+          <div class="contact-details">
+
+            <a
+              class="contact-line"
+              href="https://wa.me/2349058049243"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="contact-symbol">◉</span>
+
+              <span>
+                <small>WhatsApp</small>
+                <strong>+234 800 000 0000</strong>
+              </span>
+            </a>
+
+
+            <div class="contact-line">
+
+              <span class="contact-symbol">⌖</span>
+
+              <span>
+                <small>Location</small>
+                <strong>Sabo, Nigeria</strong>
+              </span>
+
+            </div>
+
+
+            <div class="contact-line">
+
+              <span class="contact-symbol">◷</span>
+
+              <span>
+                <small>Business Hours</small>
+                <strong>Contact us for current hours</strong>
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="contact-form reveal">
+
+          <form id="orderForm">
+
+            <div class="form-row">
+
+              <div class="field">
+                <label for="name">Your Name</label>
+
+                <input
+                  id="name"
+                  type="text"
+                  placeholder="Full name"
+                  autocomplete="name"
+                  required
+                >
+              </div>
+
+
+              <div class="field">
+                <label for="phone">Phone</label>
+
+                <input
+                  id="phone"
+                  type="tel"
+                  placeholder="080..."
+                  autocomplete="tel"
+                  required
+                >
+              </div>
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="service">
+                What do you need?
+              </label>
+
+              <select id="service">
+
+                <option value="Custom Monogram">
+                  Custom Monogram
+                </option>
+
+                <option value="Cap Embroidery">
+                  Cap Embroidery
+                </option>
+
+                <option value="Clothing Embroidery">
+                  Clothing Embroidery
+                </option>
+
+                <option value="Logo Embroidery">
+                  Logo Embroidery
+                </option>
+
+                <option value="Custom Design">
+                  Custom Design
+                </option>
+
+                <option value="Other">
+                  Other
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="message">
+                Tell us about it
+              </label>
+
+              <textarea
+                id="message"
+                placeholder="Describe the design, clothing/cap and any details..."
+                required
+              ></textarea>
+
+            </div>
+
+
+            <button
+              type="submit"
+              class="button button-primary form-submit"
+            >
+              Send via WhatsApp
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =======================================================
+       FOOTER
+       ======================================================= -->
+
+  <footer>
+
+    <div class="container footer-grid">
+
+      <div>
+
+        <div class="footer-brand">
+          TUNADE <span>SIGNATURE</span>
+        </div>
+
+        <p class="footer-copy">
+          Custom embroidery, monogram and personalised fashion
+          detailing. Sabo, Nigeria.
+        </p>
+
+      </div>
+
+
+      <div class="footer-right">
+
+        <div>
+          © <span id="year"></span>
+          TUNADE SIGNATURE
+        </div>
+
+        <div>
+          Crafted with <strong>precision</strong>.
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =======================================================
+       FLOATING WHATSAPP
+       ======================================================= -->
+
+  <a
+    href="https://wa.me/2349058049243"
+    class="whatsapp"
+    target="_blank"
+    rel="noopener"
+    aria-label="Contact TUNADE SIGNATURE on WhatsApp"
+    title="WhatsApp TUNADE SIGNATURE"
+  >
+    ✆
+  </a>
+
+
+  <script>
+
+    /* ========================================================
+       TUNADE SIGNATURE JAVASCRIPT
+       Lightweight / performance focused
+       ======================================================== */
+
+    "use strict";
+
+
+    /* --------------------------------------------------------
+       YEAR
+       -------------------------------------------------------- */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    /* --------------------------------------------------------
+       MOBILE NAVIGATION
+       -------------------------------------------------------- */
+
+    const menuButton =
+      document.getElementById("menuButton");
+
+    const navLinks =
+      document.getElementById("navLinks");
+
+
+    function closeMenu() {
+
+      menuButton.classList.remove("open");
+
+      navLinks.classList.remove("active");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      document.body.classList.remove(
+        "menu-open"
+      );
+    }
+
+
+    menuButton.addEventListener(
+      "click",
+      function () {
+
+        const isOpen =
+          navLinks.classList.toggle("active");
+
+        menuButton.classList.toggle(
+          "open",
+          isOpen
+        );
+
+        menuButton.setAttribute(
+          "aria-expanded",
+          String(isOpen)
+        );
+
+        document.body.classList.toggle(
+          "menu-open",
+          isOpen
+        );
+
+      }
+    );
+
+
+    navLinks
+      .querySelectorAll("a")
+      .forEach(function(link) {
+
+        link.addEventListener(
+          "click",
+          closeMenu
+        );
+
+      });
+
+
+    /* Close menu when Escape is pressed */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Escape") {
+          closeMenu();
+        }
+
+      }
+    );
+
+
+    /* --------------------------------------------------------
+       SCROLL REVEAL
+       IntersectionObserver is much lighter than
+       running calculations on every scroll event.
+       -------------------------------------------------------- */
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+
+    if ("IntersectionObserver" in window) {
+
+      const observer =
+        new IntersectionObserver(
+          function(entries, observerInstance) {
+
+            entries.forEach(function(entry) {
+
+              if (entry.isIntersecting) {
+
+                entry.target.classList.add(
+                  "visible"
+                );
+
+                observerInstance.unobserve(
+                  entry.target
+                );
+
+              }
+
+            });
+
+          },
+          {
+            threshold: 0.12,
+
+            rootMargin:
+              "0px 0px -40px 0px"
+          }
+        );
+
+
+      revealElements.forEach(function(element) {
+
+        observer.observe(element);
+
+      });
+
+    } else {
+
+      /* Older browser fallback */
+
+      revealElements.forEach(function(element) {
+
+        element.classList.add("visible");
+
+      });
+
+    }
+
+
+    /* --------------------------------------------------------
+       WHATSAPP FORM
+       -------------------------------------------------------- */
+
+    const orderForm =
+      document.getElementById("orderForm");
+
+
+    orderForm.addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+
+        const name =
+          document.getElementById("name")
+            .value.trim();
+
+        const phone =
+          document.getElementById("phone")
+            .value.trim();
+
+        const service =
+          document.getElementById("service")
+            .value;
+
+        const message =
+          document.getElementById("message")
+            .value.trim();
+
+
+        if (!name || !phone || !message) {
+
+          alert(
+            "Please fill in your name, phone number and message."
+          );
+
+          return;
+
+        }
+
+
+        /*
+          IMPORTANT:
+          Replace 2348000000000 with the
+          client's REAL WhatsApp number.
+        */
+
+        const businessNumber =
+          "2348000000000";
+
+
+        const whatsappMessage =
+          `Hello TUNADE SIGNATURE.%0A%0A` +
+          `My name is ${encodeURIComponent(name)}.%0A` +
+          `Phone: ${encodeURIComponent(phone)}%0A` +
+          `Service: ${encodeURIComponent(service)}%0A%0A` +
+          `My request:%0A` +
+          `${encodeURIComponent(message)}`;
+
+
+        const whatsappURL =
+          `https://wa.me/${businessNumber}?text=${whatsappMessage}`;
+
+
+        window.open(
+          whatsappURL,
+          "_blank",
+          "noopener"
+        );
+
+      }
+    );
+
+
+    /* --------------------------------------------------------
+       PREVENT ACCIDENTAL HORIZONTAL OVERFLOW
+       No heavy scroll listener is used.
+       -------------------------------------------------------- */
+
+
+    /* --------------------------------------------------------
+       IMAGE ERROR HANDLING
+       Keeps broken local image paths from making
+       the design look completely broken during setup.
+       -------------------------------------------------------- */
+
+    document
+      .querySelectorAll("img")
+      .forEach(function(image) {
+
+        image.addEventListener(
+          "error",
+          function() {
+
+            image.style.background =
+              "linear-gradient(135deg,#151515,#090909)";
+
+          },
+          {
+            once: true
+          }
+        );
+
+      });
+
+  </script>
+
+</body>
+</html>
+```
