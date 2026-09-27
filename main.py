@@ -7,10 +7,11 @@ Endpoints:
   GET  /health            -> simple health check
   POST /auth              -> verify Telegram initData, return JWT
   GET  /user/me           -> current user profile
-  POST /tap               -> handle a tap (legacy, kept for compatibility)
+  POST /tap               -> legacy tap endpoint
   POST /reward            -> handle rewarded-ad completion (resets farm)
   POST /referral          -> record a referral
-  GET  /admin/stats       -> admin-only summary (protected by ADMIN_USER_ID)
+  GET  /admin/stats       -> admin-only summary
+  POST /admin/webhook/... -> Telegram pushes admin bot updates here
   GET  /app/index.html    -> serves the Mini App frontend
 """
 
@@ -18,7 +19,7 @@ import os
 from datetime import datetime, timezone, date
 from typing import Optional
 
-from fastapi import FastAPI, Depends, HTTPException, status, Header
+from fastapi import FastAPI, Depends, HTTPException, status, Header, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
@@ -71,7 +72,7 @@ REFERRAL_BONUS = 500
 # App
 # ---------------------------------------------------------------------------
 
-app = FastAPI(title="Auto-Farm API", version="2.0.0")
+app = FastAPI(title="Auto-Farm API", version="2.1.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -85,7 +86,6 @@ app.add_middleware(
 @app.on_event("startup")
 def on_startup() -> None:
     create_db_and_tables()
-    # Start the admin bot in a background thread
     try:
         from admin_bot import start_admin_bot_background
         start_admin_bot_background()
@@ -268,10 +268,7 @@ async def handle_tap(
     current_user: User = Depends(get_current_user),
     session: Session = Depends(get_session),
 ):
-    """
-    Legacy tap endpoint. Kept for compatibility.
-    The auto-farm frontend no longer uses this, but some clients may still call it.
-    """
+    """Legacy tap endpoint. Returns current farm state."""
     _apply_farming(current_user)
     session.add(current_user)
     session.commit()
@@ -284,7 +281,7 @@ async def handle_reward(
     current_user: User = Depends(get_current_user),
     session: Session = Depends(get_session),
 ):
-    """Called after a rewarded ad completes. Resets the farm session and logs an impression."""
+    """Called after a rewarded ad completes. Resets the farm session."""
     _apply_farming(current_user)
     _reset_daily_ad_counter_if_needed(current_user)
 
@@ -294,7 +291,6 @@ async def handle_reward(
             detail="Daily ad limit reached",
         )
 
-    # Reset farm session
     current_user.farm_remaining = current_user.farm_cap
     current_user.last_farm_update = datetime.now(timezone.utc)
     current_user.ads_watched_today += 1
@@ -386,9 +382,19 @@ async def admin_stats(
     }
 
 
+@app.post("/admin/webhook/{token}")
+async def admin_webhook(token: str, request: Request):
+    """Telegram pushes admin bot updates here (no polling)."""
+    from admin_bot import ADMIN_BOT_TOKEN, handle_admin_webhook
+    if not ADMIN_BOT_TOKEN or token != ADMIN_BOT_TOKEN:
+        raise HTTPException(status_code=403, detail="Forbidden")
+    data = await request.json()
+    await handle_admin_webhook(data)
+    return {"ok": True}
+
+
 # ---------------------------------------------------------------------------
 # Static frontend
 # ---------------------------------------------------------------------------
-# ⚠️ MUST be the last line. Any route defined after this will be shadowed
-# by the static mount.
+# MUST be the last line. Any route defined after this will be shadowed.
 app.mount("/app", StaticFiles(directory=".", html=True), name="static")
