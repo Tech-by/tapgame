@@ -1,7 +1,9 @@
 # admin_bot.py
 """
 Private admin bot. Only responds to ADMIN_USER_ID.
-Runs as a background thread inside the FastAPI process (so Render only needs one service).
+
+Runs in webhook mode inside the FastAPI process — Telegram pushes updates
+to /admin/webhook/<token>, so no polling and no Conflict errors.
 """
 import os
 import asyncio
@@ -35,6 +37,10 @@ ADMIN_USER_ID = _parse_admin_id(os.getenv("ADMIN_USER_ID", "0"))
 def _is_admin(update: Update) -> bool:
     return bool(update.effective_user and update.effective_user.id == ADMIN_USER_ID)
 
+
+# ---------------------------------------------------------------------------
+# Command handlers
+# ---------------------------------------------------------------------------
 
 async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not _is_admin(update):
@@ -137,6 +143,10 @@ async def cmd_grant(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(f"✅ Granted {amt} to {tid}.")
 
 
+# ---------------------------------------------------------------------------
+# Application builder
+# ---------------------------------------------------------------------------
+
 def _build_app() -> Application:
     app = Application.builder().token(ADMIN_BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", cmd_start))
@@ -147,28 +157,65 @@ def _build_app() -> Application:
     return app
 
 
+# ---------------------------------------------------------------------------
+# Webhook mode (production — used on Render)
+# ---------------------------------------------------------------------------
+
 def start_admin_bot_background() -> None:
-    """Launch the bot in a daemon thread (used by main.py on startup)."""
+    """Register the webhook with Telegram. Called once on app startup."""
     if not ADMIN_BOT_TOKEN or ADMIN_BOT_TOKEN.startswith("YOUR"):
         print("[admin_bot] ADMIN_BOT_TOKEN not set — skipping.")
         return
 
-    def _run():
-        # Create a fresh event loop for this thread — required by python-telegram-bot
+    public_url = os.getenv("PUBLIC_URL", "").rstrip("/")
+    if not public_url:
+        print("[admin_bot] PUBLIC_URL not set — skipping webhook setup.")
+        return
+
+    webhook_url = f"{public_url}/admin/webhook/{ADMIN_BOT_TOKEN}"
+
+    def _setup():
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
+
+        async def _register():
+            try:
+                app = _build_app()
+                await app.bot.set_webhook(
+                    url=webhook_url,
+                    drop_pending_updates=True,
+                    allowed_updates=["message"],
+                )
+                print("[admin_bot] webhook registered ✅")
+            except Exception as e:
+                print(f"[admin_bot] webhook setup failed: {e}")
+
         try:
-            app = _build_app()
-            print("[admin_bot] running")
-            app.run_polling(stop_signals=None)
-        except Exception as e:
-            print(f"[admin_bot] crashed: {e}")
+            loop.run_until_complete(_register())
+        finally:
+            loop.close()
 
-    threading.Thread(target=_run, daemon=True).start()
+    threading.Thread(target=_setup, daemon=True).start()
 
+
+async def handle_admin_webhook(update_data: dict) -> None:
+    """Process a single update pushed by Telegram."""
+    try:
+        app = _build_app()
+        await app.initialize()
+        update = Update.de_json(update_data, app.bot)
+        await app.process_update(update)
+        await app.shutdown()
+    except Exception as e:
+        print(f"[admin_bot] update handling failed: {e}")
+
+
+# ---------------------------------------------------------------------------
+# Standalone runner (local testing only — uses polling)
+# ---------------------------------------------------------------------------
 
 def run_admin_bot() -> None:
-    """Run standalone (for local testing)."""
+    """Run in polling mode. For local testing only."""
     _build_app().run_polling()
 
 
